@@ -29,6 +29,7 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "express": "^5.2.1",
-    "mongodb": "^7.5.0"
+    "mongodb": "^7.5.0",
+    "mongosh": "^2.9.2"
   }
 }
