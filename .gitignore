@@ -1,0 +1,51 @@
+# Ignore node_modules 
+# This is a common directory for dependencies in JavaScript projects, and it can be very large. Ignoring it helps to keep the repository clean and reduces the size of the repository.
+# When using a package manager like npm or yarn, the dependencies will be installed locally in the node_modules directory, and it is not necessary to include this directory in version control.
+
+# Dependencies (if using npm for tooling like prettier, eslint, etc.)
+node_modules/
+
+# OS files
+.DS_Store
+*.DS_Store
+Thumbs.db
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Environment variables (if you ever add a backend or API keys)
+.env
+.env.*
+.env.local
+.env.*.local
+
+# Build output (if you add a bundler like Vite or Webpack later)
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+#Config files
+*.config.js
+*.config.json
+
+config.js
+config.json
+secrets.js
+secrets.json
+
+# Add for any tooling added later: Parcel, ESLint cache, etc.
+.cache/
+
+#These two will stop anything. The second ignores pycache in any parent folder
+#The first ignores the pycache folder in the main project folder 
+/__pycache__/
+**/__pycache__/*
+
+# Claude Code
+.claude/settings.local.json
