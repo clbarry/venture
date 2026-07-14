@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import bcrypt from "bcrypt";
-import ventureDB from "../../db/ventureDB.js";
+import ventureDB from "../db/ventureDB.js";
 
 const strategy = new LocalStrategy(async (username, password, done) => {
   try {
