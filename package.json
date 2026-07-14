@@ -2,9 +2,11 @@
   "name": "venture",
   "version": "1.0.0",
   "description": "",
-  "main": "eslint.config.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch server.js"
   },
   "repository": {
     "type": "git",
@@ -13,24 +15,23 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/clbarry/venture/issues"
-  },
-  "homepage": "https://github.com/clbarry/venture#readme",
   "devDependencies": {
-    "eslint": "^10.7.0",
-    "eslint-plugin-prettier": "^5.5.6",
-    "http-server": "^14.1.1",
-    "nodemon": "^3.1.14",
-    "prettier": "^3.9.5",
-    "reload": "^3.2.0"
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.4.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "mongodb": "^7.5.0",
-    "mongosh": "^2.9.2",
-    "node": "^26.5.0"
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
   }
 }
