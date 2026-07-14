@@ -28,6 +28,19 @@ function VentureDB() {
     const itineraries = client.db(DB_NAME).collection(COLLECTION);
     return { client, itineraries };
   };
+
+  const connectProfiles = () => {
+    const client = new MongoClient(URI, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+    const profiles = client.db(DB_NAME).collection(PROFILES);
+    return { client, profiles };
+  };
+  
   me.getItineraries = async (query = {}) => {
     const { client, itineraries } = connect();
 
@@ -66,6 +79,44 @@ function VentureDB() {
       await client.close();
     }
   };
+
+  me.getAllUsers = async () => {
+    const { client, profiles } = connectProfiles();
+    try {
+      return await profiles.find({}).toArray();
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.findUserByUsername = async (username) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      return await profiles.findOne({ username });
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.findUserById = async (id) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      return await profiles.findOne({ _id: new ObjectId(id) });
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.createUser = async (user) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      const result = await profiles.insertOne(user);
+      return { _id: result.insertedId, ...user };
+    } finally {
+      await client.close();
+    }
+  };
+  return me;
 }
 
 const ventureDB = VentureDB();
