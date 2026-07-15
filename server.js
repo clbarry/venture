@@ -3,6 +3,7 @@ import session from "express-session";
 import dotenv from "dotenv";
 import passport from "./config/passport.js";
 import authRouter from "./routes/auth.js";
+import profileRouter from "./routes/profile.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -30,6 +31,7 @@ app.use(passport.session());
 app.use("/", express.static("../frontend/dist"));
 
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
