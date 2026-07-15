@@ -1,0 +1,166 @@
+.login-page {
+  font-family: "Open Sans", sans-serif;
+  color: #1b2432;
+}
+
+.login-hero {
+  background: linear-gradient(
+    135deg,
+    #aecbc9 0%,
+    #e3c98b 45%,
+    #ec8a5c 100%
+  );
+  padding: 3rem 3.5rem;
+}
+
+.login-brand {
+  gap: 0.75rem;
+}
+
+.login-logo {
+  width: 44px;
+  height: 44px;
+  fill: #1b2432;
+}
+
+.login-brand-name {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #1b2432;
+}
+
+.login-hero-body {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 3rem;
+  max-width: 34rem;
+}
+
+.login-headline {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 1.75rem;
+}
+
+.login-subhead {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 2.25rem;
+}
+
+.login-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  max-width: 28rem;
+}
+
+.login-pill {
+  background: #fdf6e3;
+  border-radius: 50rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.login-tagline {
+  font-style: italic;
+  font-size: 1rem;
+  max-width: 30rem;
+  margin-bottom: 0;
+}
+
+
+.login-form-panel {
+  background: #fdf7e7;
+  padding: 3rem 1.5rem;
+}
+
+.login-form-wrap {
+  width: 100%;
+  max-width: 26rem;
+}
+
+.login-welcome {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-welcome-sub {
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+
+.login-input {
+  border-radius: 50rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid #ead9b8;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.login-input::placeholder {
+  color: #a9a294;
+}
+
+.login-submit {
+  background: #ec7a52;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.85rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.login-submit:active {
+  background: #d96a44;
+  border: none;
+  box-shadow: 0 0 0 0.2rem rgba(236, 122, 82, 0.25);
+}
+
+
+.login-error {
+  color: #b3402a;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.login-toggle-row {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.login-toggle {
+  color: #ec5a2e;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0;
+  vertical-align: baseline;
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .login-hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-hero-body {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .login-form-panel {
+    padding: 3rem 1.5rem 4rem;
+  }
+}

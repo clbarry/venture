@@ -1,0 +1,71 @@
+.venture-navbar {
+  background: #fdf7e7;
+  border-bottom: 1px solid #ead9b8;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+.venture-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.venture-brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.venture-brand-name {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #1b2432;
+}
+
+.venture-nav {
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.venture-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #1b2432;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 50rem;
+}
+
+.venture-nav-link:hover {
+  color: #1b2432;
+  background: rgba(27, 36, 50, 0.06);
+}
+
+.venture-nav-link.active {
+  background: #e3e3e0;
+  color: #1b2432;
+}
+
+.venture-nav-icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .venture-nav {
+    align-items: stretch;
+    padding-top: 0.75rem;
+    gap: 0.25rem;
+  }
+
+  .venture-nav-link {
+    border-radius: 0.75rem;
+  }
+}

@@ -3,7 +3,9 @@ import { useNavigate } from "react-router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import NavigationBar from "../components/NavigationBar.jsx";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import "../css/LoginPage.css";
 
 export default function LoginPage() {
   const [mode, setMode] = useState("login"); // to track login or register
@@ -19,7 +21,9 @@ export default function LoginPage() {
 
     const isLogin = mode === "login";
     const url = isLogin ? "/api/auth/login" : "/api/auth/register";
-    const body = isLogin ? { username, password } : { username, email, password };
+    const body = isLogin
+      ? { username, password }
+      : { username, email, password };
 
     const res = await fetch(url, {
       method: "POST",
@@ -40,52 +44,109 @@ export default function LoginPage() {
     setError("");
   };
 
+  const isLogin = mode === "login";
+
   return (
-    <>
-      <NavigationBar />
-      <Container>
-        <h1>{mode === "login" ? "Login" : "Register"}</h1>
-        <Form onSubmit={onSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </Form.Group>
+    <Container fluid className="login-page g-0">
+      <Row className="g-0 min-vh-100">
+        <Col lg={6} className="login-hero d-flex flex-column">
+          <div className="login-brand d-flex align-items-center">
+            <img src="/compass.png" alt="" className="login-logo" />
+            <span className="login-brand-name">Venture</span>
+          </div>
 
-          {mode === "register" && (
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </Form.Group>
-          )}
+          <div className="login-hero-body">
+            <h1 className="login-headline">
+              Plan trips together. Get inspired by travelers you love.
+            </h1>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
+            <p className="login-subhead">
+              Build day-by-day itineraries, share them like posts, and remix
+              ideas from friends, families, and celebrities around the world.
+            </p>
 
-          <Button type="submit">
-            {mode === "login" ? "Login" : "Register"}
-          </Button>
-          {error && <div>{error}</div>}
-        </Form>
+            <div className="login-pills">
+              <span className="login-pill">Daily Itineraries</span>
+              <span className="login-pill">Collaborate with friends</span>
+              <span className="login-pill">Discover new places</span>
+            </div>
 
-        <Button variant="link" onClick={toggleMode}>
-          {mode === "login"
-            ? "Don't have an account? Register"
-            : "Already have an account? Login"}
-        </Button>
-      </Container>
-    </>
+            <p className="login-tagline">
+              Made for the solo trips, family vacations, camping expeditions,
+              and everything in between.
+            </p>
+          </div>
+        </Col>
+
+        <Col
+          lg={6}
+          className="login-form-panel d-flex align-items-center justify-content-center"
+        >
+          <div className="login-form-wrap">
+            <h2 className="login-welcome">
+              {isLogin ? "Welcome" : "Join Venture"}
+            </h2>
+            <p className="login-welcome-sub">
+              {isLogin
+                ? "Sign in to see your feed and keep planning"
+                : "Create an account to start planning"}
+            </p>
+
+            <Form onSubmit={onSubmit}>
+              <Form.Group className="mb-3" controlId="login-username">
+                <Form.Label className="visually-hidden">Username</Form.Label>
+                <Form.Control
+                  className="login-input"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </Form.Group>
+
+              {mode === "register" && (
+                <Form.Group className="mb-3" controlId="login-email">
+                  <Form.Label className="visually-hidden">Email</Form.Label>
+                  <Form.Control
+                    className="login-input"
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </Form.Group>
+              )}
+
+              <Form.Group className="mb-3" controlId="login-password">
+                <Form.Label className="visually-hidden">Password</Form.Label>
+                <Form.Control
+                  className="login-input"
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
+
+              <Button type="submit" className="login-submit w-100">
+                {isLogin ? "Sign in" : "Sign up"}
+              </Button>
+
+              {error && <div className="login-error">{error}</div>}
+            </Form>
+
+            <p className="login-toggle-row">
+              {isLogin ? "New to Venture?" : "Already have an account?"}{" "}
+              <Button
+                variant="link"
+                className="login-toggle"
+                onClick={toggleMode}
+              >
+                {isLogin ? "Sign up" : "Sign in"}
+              </Button>
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
