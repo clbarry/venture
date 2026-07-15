@@ -14,8 +14,8 @@ root.render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<FeedPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/feed" element={<FeedPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>

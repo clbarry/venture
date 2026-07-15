@@ -32,7 +32,7 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      navigate("/");
+      navigate("/feed");
     } else {
       const data = await res.json().catch(() => ({}));
       setError(data.message || "Something went wrong");
