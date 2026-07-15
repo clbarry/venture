@@ -1,0 +1,194 @@
+.profile-page {
+  background: #fdf7e7;
+  min-height: calc(100vh - 64px);
+  font-family: "Open Sans", sans-serif;
+  color: #1b2432;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-loading {
+  padding-top: 3rem;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.profile-header {
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+}
+
+.profile-name {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-handle {
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.profile-stat {
+  font-size: 0.95rem;
+}
+
+.profile-itineraries {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  max-width: 60rem;
+}
+
+.itinerary-columns {
+  column-count: 3;
+  column-gap: 1.25rem;
+}
+
+.profile-empty {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.itinerary-card {
+  background: #fffdf6;
+  border: 1.5px solid;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.25rem;
+  break-inside: avoid;
+  box-shadow: 0 1px 3px rgba(27, 36, 50, 0.06);
+}
+
+.itinerary-accent-0 {
+  border-color: #f0b45a;
+}
+
+.itinerary-accent-1 {
+  border-color: #4d96d9;
+}
+
+.itinerary-accent-2 {
+  border-color: #7fb4e0;
+}
+
+.itinerary-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.itinerary-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.itinerary-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.itinerary-pin {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.itinerary-collab {
+  font-size: 0.72rem;
+  margin-bottom: 0.9rem;
+}
+
+.itinerary-day {
+  margin-bottom: 0.9rem;
+}
+
+.itinerary-day-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.itinerary-activities {
+  padding-left: 0.75rem;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+}
+
+.itinerary-note {
+  text-align: right;
+  font-size: 0.78rem;
+  margin-bottom: 0;
+}
+
+.profile-account {
+  margin-top: auto;
+  background: #fdf7e7;
+  border-top: 1px solid #ead9b8;
+  padding: 2rem 0 3rem;
+}
+
+.profile-account-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.profile-account-warning {
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.profile-delete-btn {
+  background: #f6c6c2;
+  color: #c0392b;
+  border: 1px solid #eeaaa4;
+  border-radius: 50rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+}
+
+.profile-delete-btn:hover,
+.profile-delete-btn:active {
+  background: #f0b0aa;
+  color: #a52f22;
+  border-color: #e29a93;
+}
+
+@media (max-width: 900px) {
+  .itinerary-columns {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .itinerary-columns {
+    column-count: 1;
+  }
+
+  .profile-stats {
+    gap: 2rem;
+  }
+
+  .profile-header {
+    padding-top: 3rem;
+  }
+}

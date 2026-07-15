@@ -40,7 +40,7 @@ function VentureDB() {
     const profiles = client.db(DB_NAME).collection(PROFILES);
     return { client, profiles };
   };
-  
+
   me.getItineraries = async (query = {}) => {
     const { client, itineraries } = connect();
 
@@ -116,6 +116,25 @@ function VentureDB() {
       await client.close();
     }
   };
+
+  me.deleteUser = async (id) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      return await profiles.deleteOne({ _id: new ObjectId(id) });
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.deleteItinerariesByCreator = async (username) => {
+    const { client, itineraries } = connect();
+    try {
+      return await itineraries.deleteMany({ creator: username });
+    } finally {
+      await client.close();
+    }
+  };
+
   return me;
 }
 

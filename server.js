@@ -33,6 +33,10 @@ app.use("/", express.static("../frontend/dist"));
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
 
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
