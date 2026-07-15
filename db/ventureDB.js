@@ -135,6 +135,49 @@ function VentureDB() {
     }
   };
 
+  me.getAllUsernames = async () => {
+    const { client, profiles } = connectProfiles();
+    try {
+      return await profiles
+        .find({}, { projection: { username: 1, _id: 0 } })
+        .toArray();
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.followUser = async (followerUsername, targetUsername) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      await profiles.updateOne(
+        { username: followerUsername },
+        { $addToSet: { following: targetUsername } },
+      );
+      await profiles.updateOne(
+        { username: targetUsername },
+        { $addToSet: { followers: followerUsername } },
+      );
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.unfollowUser = async (followerUsername, targetUsername) => {
+    const { client, profiles } = connectProfiles();
+    try {
+      await profiles.updateOne(
+        { username: followerUsername },
+        { $pull: { following: targetUsername } },
+      );
+      await profiles.updateOne(
+        { username: targetUsername },
+        { $pull: { followers: followerUsername } },
+      );
+    } finally {
+      await client.close();
+    }
+  };
+
   return me;
 }
 
