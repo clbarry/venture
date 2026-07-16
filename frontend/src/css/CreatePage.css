@@ -30,6 +30,12 @@
   margin-bottom: 0.25rem;
 }
 
+.create-page-header {
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  margin-left: 0.5rem;
+}
+
 .create-form-card {
   border: 1px solid var(--dark-color);
   border-radius: 0.75rem;
