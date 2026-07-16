@@ -1,18 +1,19 @@
 
 /* Color Palette */
 :root {
-  --dark-font:    #1b2432; /* Dark Font */
-  --dark-color:   #071425; /* Dark Blue */
-  --coral-red:    #fe5e41; /* Coral Red */
-  --orange:       #f3c178; /* Sandy Orange */
-  --sky-blue:     #92d5e6; /* Sky Blue */
-  --background:   #fffaed; /* Light Cream */
-  --card-background: #ffffff; /* White */
+  --dark-font:      #1b2432; /* Dark Font */
+  --dark-color:     #071425; /* Dark Blue */
+  --coral-red:      #fe5e41; /* Coral Red */
+  --orange:         #f3c178; /* Sandy Orange */
+  --sky-blue:       #92d5e6; /* Sky Blue */
+  --background:     #fdf7e7; /* Lighter Cream */
+  --background-alt: #ead9b8; /* Light Cream */
+  --card-background:#ffffff; /* White */
 }
 
 .day-plans-card {
   border: 1px solid var(--dark-color);
-  border-radius: 0.9rem;
+  border-radius: 0.75rem;
   background-color: var(--card-background);
 }
 

@@ -30,14 +30,14 @@ export default function CreatePage() {
     <>
       {/* Navigation */}
       <NavigationBar />
-      <Container>
-        <h1 className="create-page-title">Create</h1>
-      </Container>
-
       {/* create page body */}
       <main className="create-page-body">
-        {/* page description */}
+        {/* page title */}
+        <Container className="create-page-title">
+          <h1>Create</h1>
+        </Container>
 
+        {/* page description */}
         <header className="create-page-header">
           <h2 className="create-page-headline">
             Create an itinerary & plan your next adventure.
@@ -162,6 +162,8 @@ export default function CreatePage() {
               </div>
             </div>{" "}
             {/* form create-form-card end */}
+            <br />
+            <br />
             {Array.from({ length: dayCount }, (_, index) => (
               <DayPlans key={index} dayNumber={index + 1} />
             ))}
