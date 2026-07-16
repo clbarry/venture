@@ -49,12 +49,12 @@ export default function CreatePage() {
 
         {/* form entry - itinerary title */}
         <div className="create-form">
-          <form method="post" action="/create">
+          <form method="post" className="row g-3" action="/create">
             {/* form card */}
             <div className="create-form-card">
               {/* form entry - itinerary title */}
               {/* text input */}
-              <div className="container form-entry">
+              <div className="container form-entry col-12">
                 <label htmlFor="itineraryTitle">title</label>
                 <input
                   type="text"
@@ -67,14 +67,14 @@ export default function CreatePage() {
 
               {/* form entry - itinerary theme */}
               {/* text input */}
-              <div className="form-entry">
+              <div className="form-entry col-md-6">
                 <label htmlFor="theme">theme</label>
                 <input type="text" name="theme" id="theme" required />
               </div>
 
               {/* form entry - itinerary fitness level */}
               {/* drop down */}
-              <div className="form-entry">
+              <div className="form-entry col-md-6">
                 <label htmlFor="fitnessLevel">fitness level</label>
                 <select name="fitnessLevel" id="fitnessLevel" required>
                   <option value="">
@@ -105,20 +105,20 @@ export default function CreatePage() {
 
               {/* form entry - itinerary country */}
               {/* text area */}
-              <div className="form-entry">
+              <div className="form-entry col-md-6">
                 <label htmlFor="country">country</label>
                 <textarea name="country" id="country" required></textarea>
               </div>
 
               {/* form entry - city/region */}
-              <div className="form-entry">
+              <div className="form-entry col-md-6">
                 <label htmlFor="cityRegion">city/region</label>
                 <textarea name="cityRegion" id="cityRegion" required></textarea>
               </div>
 
               {/* form entry - itinerary duration */}
               {/* slider */}
-              <div className="form-entry">
+              <div className="form-entry col-md-8">
                 <label htmlFor="days">number of days</label>
                 <input
                   type="range"
@@ -137,7 +137,7 @@ export default function CreatePage() {
 
               {/* form entry - family friendly */}
               {/* checkbox */}
-              <div className="form-entry">
+              <div className="form-entry col-md-4">
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -151,7 +151,7 @@ export default function CreatePage() {
 
               {/* form entry - collaborators */}
               {/* text entry with multiple selection */}
-              <div className="form-entry">
+              <div className="form-entry col-12">
                 <label htmlFor="collaborators">collaborators</label>
                 <input
                   type="text"
@@ -160,6 +160,19 @@ export default function CreatePage() {
                   placeholder="@friend1, @friend2, @friend3..."
                 />
               </div>
+
+              {/* form entry - collaborators */}
+              {/* text entry with multiple selection */}
+              <div className="form-entry col-12">
+                <label htmlFor="caption">caption</label>
+                <input
+                  type="text"
+                  name="caption"
+                  id="caption"
+                  placeholder="Share your tips..."
+                />
+              </div>
+
             </div>{" "}
             {/* form create-form-card end */}
             <br />
