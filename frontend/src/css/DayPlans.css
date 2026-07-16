@@ -15,6 +15,7 @@
   border: 1px solid var(--dark-color);
   border-radius: 0.75rem;
   background-color: var(--card-background);
+  box-shadow: 0 4px 6px var(--dark-color, 0.1);
 }
 
 .day-plans-card-title {
