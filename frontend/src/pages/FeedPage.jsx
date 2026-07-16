@@ -7,7 +7,7 @@ export default function FeedPage() {
   const navigate = useNavigate();
   useEffect(() => {
     fetch("/api/auth/user").then((res) => {
-      if (!res.ok) navigate("/login");
+      if (!res.ok) navigate("/");
     });
   }, [navigate]);
   return (

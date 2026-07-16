@@ -11,9 +11,10 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3300;
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use("/", express.static(path.join(__dirname, "./frontend/dist")));
+
+app.set("trust proxy", 1);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,16 +23,20 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { httpOnly: true, secure: false, maxAge: 24 * 60 * 60 * 1000 },
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000,
+    },
   }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", express.static("../frontend/dist"));
-
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
+
+app.use("/", express.static(path.join(__dirname, "frontend/dist")));
 
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
