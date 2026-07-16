@@ -177,8 +177,6 @@ export default function CreatePage() {
                   placeholder="Share your tips..."
                 />
               </div>
-              <br />
-              <br />
               
             </div>{" "}
             {/* form create-form-card end */}
