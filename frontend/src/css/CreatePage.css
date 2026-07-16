@@ -1,12 +1,37 @@
-
 /* CreatePage.css */
-
 
 /* Color Palette */
 :root {
-    --dark-navy:    #071425;
-    --coral-red:    #FE5E41;
-    --sandy-orange: #F3C178;
-    --sky-blue:     #92D5E6;
-    --ivory-cream:  #FFFAED;
+  --dark-font:  #1b2432; /* Dark Font */
+  --dark-color: #071425; /* Dark Blue */
+  --coral-red:  #fe5e41; /* Coral Red */
+  --orange:     #f3c178; /* Sandy Orange */
+  --sky-blue:   #92d5e6; /* Sky Blue */
+  --background: #fffaed; /* Light Cream */
+}
+
+.create-page {
+  font-family: "Open Sans", sans-serif;
+  color: var(--dark-font);
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+
+/* Create Page Buttons */
+.btn, .btn-primary {
+  --bs-btn-font-weight: 500;
+  --bs-btn-font-family: "Playfair Display", serif;
+  --bs-btn-color: var(--background);
+  --bs-btn-bg: var(--coral-red);
+  --bs-btn-border-color: var(--coral-red);
+  --bs-btn-hover-color: var(--coral-red);
+  --bs-btn-hover-bg: var(--background);
+  --bs-btn-hover-border-color: var(--coral-red);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: var(--coral-red);
+  --bs-btn-active-border-color: var(--dark-color);
+  border-radius: 9999px;
 }
