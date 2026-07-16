@@ -55,21 +55,13 @@
   min-width: 0;
 }
 
-.create-form-card .form-entry input:not([type="checkbox"]):not([type="range"]),
-.create-form-card .form-entry select,
-.create-form-card .form-entry textarea,
-.create-form-card .form-entry .form-select {
+.fitnessLevel {
   width: 100%;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
 }
 
-.create-form-card .form-entry input[type="checkbox"],
-.create-form-card .form-entry input[type="range"] {
-  width: auto;
-  max-width: none;
-}
 
 .create-form-card .form-entry .form-check-input {
   width: 1.05rem;
