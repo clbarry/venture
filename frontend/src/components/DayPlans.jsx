@@ -23,7 +23,7 @@ export default function DayPlans({ dayNumber }) {
   };
 
   return (
-    <div className="card day-plans-card shadow-sm mb-3">
+    <div className="card day-plans-card mb-3">
       <div className="card-body">
       <h3 className="day-plans-card-title">Day {dayNumber}</h3>
 
