@@ -10,8 +10,8 @@
   --background: #fffaed; /* Light Cream */
 }
 
-.create-page {
-  font-family: "Open Sans", sans-serif;
+.create-page-body {
+  font-family: "Playfair Display", serif;
   color: var(--dark-font);
   background-color: var(--background);
   display: flex;
@@ -19,11 +19,18 @@
   min-height: calc(100vh - 64px);
 }
 
+.create-page-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+  margin-bottom: 0.25rem;
+  background: var(--background);
+}
 
 /* Create Page Buttons */
-.btn, .btn-primary {
+#publishButton {
   --bs-btn-font-weight: 500;
-  --bs-btn-font-family: "Playfair Display", serif;
+  --bs-btn-font-family: "Open Sans", serif;
   --bs-btn-color: var(--background);
   --bs-btn-bg: var(--coral-red);
   --bs-btn-border-color: var(--coral-red);
@@ -33,5 +40,8 @@
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: var(--coral-red);
   --bs-btn-active-border-color: var(--dark-color);
+  width: fit-content;
   border-radius: 9999px;
 }
+
+
