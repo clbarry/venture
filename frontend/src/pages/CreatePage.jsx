@@ -166,8 +166,8 @@ export default function CreatePage() {
                 />
               </div>
 
-              {/* form entry - collaborators */}
-              {/* text entry with multiple selection */}
+              {/* form entry - caption */}
+              {/* text entry */}
               <div className="form-entry col-12">
                 <label htmlFor="caption">caption</label>
                 <input
@@ -177,7 +177,9 @@ export default function CreatePage() {
                   placeholder="Share your tips..."
                 />
               </div>
-
+              <br />
+              <br />
+              
             </div>{" "}
             {/* form create-form-card end */}
             <br />
