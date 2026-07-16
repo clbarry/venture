@@ -118,7 +118,7 @@ export default function CreatePage() {
 
               {/* form entry - itinerary duration */}
               {/* slider */}
-              <div className="form-entry col-md-8">
+              <div className="form-entry col-md-6">
                 <label htmlFor="days">number of days</label>
                 <input
                   type="range"
@@ -137,7 +137,7 @@ export default function CreatePage() {
 
               {/* form entry - family friendly */}
               {/* checkbox */}
-              <div className="form-entry col-md-4">
+              <div className="form-entry col-md-6">
                 <input
                   className="form-check-input"
                   type="checkbox"
