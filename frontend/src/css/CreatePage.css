@@ -46,6 +46,7 @@
 .create-form {
     padding: 2.5rem 1.5rem;
     margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 
 .create-form-card .form-entry {
