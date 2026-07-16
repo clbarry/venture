@@ -74,14 +74,14 @@ export default function CreatePage() {
 
               {/* form entry - itinerary fitness level */}
               {/* drop down */}
-               <div className="form-entry col-md-6">
+              <div className="form-entry col-md-6">
                 <label htmlFor="fitnessLevel">fitness level</label>
-                 <select
-                   name="fitnessLevel"
-                   id="fitnessLevel"
-                   className="form-select"
-                   required
-                 >
+                <select
+                  name="fitnessLevel"
+                  id="fitnessLevel"
+                  className="form-select"
+                  required
+                >
                   <option value="">
                     Select fitness level needed for this itinerary
                   </option>
@@ -177,7 +177,6 @@ export default function CreatePage() {
                   placeholder="Share your tips..."
                 />
               </div>
-              
             </div>{" "}
             {/* form create-form-card end */}
             <br />
@@ -185,8 +184,6 @@ export default function CreatePage() {
             {Array.from({ length: dayCount }, (_, index) => (
               <DayPlans key={index} dayNumber={index + 1} />
             ))}
-            <br />
-            <br />
             {/* submit button */}
             <div className="create-form-submit d-grid gap-2 d-md-flex justify-content-md-end">
               <button
