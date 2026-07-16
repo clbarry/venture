@@ -192,3 +192,12 @@
     padding-top: 3rem;
   }
 }
+
+.profile-stat-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}

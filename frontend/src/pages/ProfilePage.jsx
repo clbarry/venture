@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import NavigationBar from "../components/NavigationBar.jsx";
 import "../css/ProfilePage.css";
+import FollowModal from "../components/FollowModal.jsx";
 
 function planToDays(it) {
   if (!it.plan || typeof it.plan !== "object") return [];
@@ -13,6 +14,7 @@ function planToDays(it) {
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const [modalMode, setModalMode] = useState(null);
 
   const [deleting, setDeleting] = useState(false);
 
@@ -37,19 +39,21 @@ export default function ProfilePage() {
       alert("Failed to delete account. Please try again.");
     }
   };
-  useEffect(() => {
-    const loadProfile = async () => {
-      const res = await fetch("/api/profile");
-      if (res.status === 401) {
-        navigate("/");
-        return;
-      }
-      if (!res.ok) return;
-      const data = await res.json();
-      setProfile(data);
-    };
-    loadProfile();
+
+  const loadProfile = useCallback(async () => {
+    const res = await fetch("/api/profile");
+    if (res.status === 401) {
+      navigate("/");
+      return;
+    }
+    if (!res.ok) return;
+    const data = await res.json();
+    setProfile(data);
   }, [navigate]);
+
+  useEffect(() => {
+    loadProfile();
+  }, [loadProfile]);
 
   if (!profile) {
     return (
@@ -75,12 +79,21 @@ export default function ProfilePage() {
             <span className="profile-stat">
               <strong>{profile.itineraries.length}</strong> itineraries
             </span>
-            <span className="profile-stat">
+            <button
+              className="profile-stat profile-stat-btn"
+              onClick={() => setModalMode("followers")}
+            >
               <strong>{profile.followers.length}</strong> followers
-            </span>
-            <span className="profile-stat">
+            </button>
+            <button
+              className="profile-stat profile-stat-btn"
+              onClick={() => setModalMode("following")}
+            >
               <strong>{profile.following.length}</strong> following
-            </span>
+            </button>
+            <Button size="sm" onClick={() => setModalMode("follow")}>
+              +
+            </Button>
           </div>
         </Container>
 
@@ -138,7 +151,15 @@ export default function ProfilePage() {
             </div>
           )}
         </Container>
-
+        <FollowModal
+          show={modalMode !== null}
+          onHide={() => setModalMode(null)}
+          mode={modalMode ?? "follow"}
+          following={profile.following}
+          followers={profile.followers}
+          currentUser={profile.username}
+          onChanged={loadProfile}
+        />
         <div className="profile-account">
           <Container>
             <h2 className="profile-account-title">Account</h2>
