@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { Link, NavLink, useNavigate } from "react-router";
-import "../css/Navbar.css";
+import "../css/NavigationBar.css";
 
 export default function NavigationBar() {
   const navigate = useNavigate();
