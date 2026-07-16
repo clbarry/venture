@@ -51,6 +51,17 @@
 .create-form-card .form-entry {
   display: grid;
   gap: 0.5rem;
+  min-width: 0;
+}
+
+.create-form-card .form-entry input,
+.create-form-card .form-entry select,
+.create-form-card .form-entry textarea,
+.create-form-card .form-entry .form-select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .form-control {
