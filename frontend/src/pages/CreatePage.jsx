@@ -49,9 +49,9 @@ export default function CreatePage() {
 
         {/* form entry - itinerary title */}
         <div className="create-form">
-          <form method="post" className="row g-3" action="/create">
+          <form method="post" action="/create">
             {/* form card */}
-            <div className="create-form-card">
+            <div className="create-form-card row g-3">
               {/* form entry - itinerary title */}
               {/* text input */}
               <div className="container form-entry col-12">
