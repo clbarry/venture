@@ -34,10 +34,7 @@
   border: 1px solid var(--dark-color);
   border-radius: 0.75rem;
   background-color: var(--card-background);
-}
-
-.create-form-card-title {
-  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 6px var(--dark-color, 0.1);
 }
 
 .create-form {
@@ -47,6 +44,10 @@
 .create-form-card .form-entry {
   display: grid;
   gap: 0.5rem;
+}
+
+.form-entry {
+  background-color: var(--background);
 }
 
 /* Create Page Buttons */
