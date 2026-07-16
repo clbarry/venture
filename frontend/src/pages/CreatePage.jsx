@@ -54,7 +54,7 @@ export default function CreatePage() {
             <div className="create-form-card row g-3">
               {/* form entry - itinerary title */}
               {/* text input */}
-              <div className="container form-entry col-12">
+              <div className=" form-entry col-12">
                 <label htmlFor="itineraryTitle">title</label>
                 <input
                   type="text"
@@ -137,7 +137,7 @@ export default function CreatePage() {
 
               {/* form entry - family friendly */}
               {/* checkbox */}
-              <div className="form-entry col-md-6">
+              <div className="form-entry form-check d-flex align-items-center gap-2 col-md-6">
                 <input
                   className="form-check-input"
                   type="checkbox"
