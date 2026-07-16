@@ -43,13 +43,10 @@ function VentureDB() {
 
   me.getItineraries = async (query = {}) => {
     const { client, itineraries } = connect();
-
     try {
       const data = await itineraries.find(query).toArray();
       console.log("Fetched data from Mongo:", data);
       return data;
-    } catch (err) {
-      throw err;
     } finally {
       await client.close();
     }
@@ -64,8 +61,6 @@ function VentureDB() {
 
       await itineraries.deleteOne({ _id: id });
       return { deleted: true };
-    } catch (err) {
-      throw err;
     } finally {
       await client.close();
     }
