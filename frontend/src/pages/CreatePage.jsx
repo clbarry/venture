@@ -142,7 +142,7 @@ export default function CreatePage() {
 
               {/* form entry - family friendly */}
               {/* checkbox */}
-              <div className="form-entry form-check d-flex align-items-center gap-2 col-md-6">
+              <div className="form-entry d-flex align-items-center gap-2 col-md-6">
                 <input
                   className="form-check-input"
                   type="checkbox"

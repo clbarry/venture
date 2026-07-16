@@ -70,6 +70,13 @@
   max-width: none;
 }
 
+.create-form-card .form-entry .form-check-input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
 .form-control {
   background-color: var(--background);
 }
