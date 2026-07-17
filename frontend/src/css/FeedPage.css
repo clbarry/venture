@@ -1,0 +1,20 @@
+
+
+/* Color Palette */
+:root {
+    --dark-color:   #071425;    /* Dark Blue */
+    --coral-red:    #FE5E41;    /* Coral Red */
+    --orange:       #F3C178;    /* Sandy Orange */
+    --sky-blue:     #92D5E6;    /* Sky Blue */
+    --background:   #FFFAED;    /* Light Cream */
+}
+
+.feed-page {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.feed-list {
+    margin-top: 1rem;
+}
+

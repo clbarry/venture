@@ -1,0 +1,108 @@
+/* Color Palette */
+:root {
+  --dark-font:      #1b2432; /* Dark Font */
+  --dark-color:     #071425; /* Dark Blue */
+  --coral-red:      #fe5e41; /* Coral Red */
+  --orange:         #f3c178; /* Sandy Orange */
+  --sky-blue:       #92d5e6; /* Sky Blue */
+  --background:     #fdf7e7; /* Lighter Cream */
+  --background-alt: #ead9b8; /* Light Cream */
+  --card-background:#ffffff; /* White */
+}
+
+.feed-cards {
+  border: 1px solid var(--dark-color);
+  border-radius: 0.75rem;
+  background-color: var(--card-background);
+  box-shadow: 0 8px 20px rgba(7, 20, 37, 0.12);
+  overflow: hidden;
+}
+
+.feed-cards-header {
+  background-color: var(--coral-red);
+  color: var(--dark-color);
+  padding: 1rem;
+  border-bottom: 1px solid var(--background-alt);
+}
+
+.feed-cards-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.feed-cards-heading-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.feed-cards-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.feed-cards-caption {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.feed-cards-body {
+  padding: 1rem;
+}
+
+.feed-cards-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.feed-cards-chip {
+  background: var(--background);
+  border: 1px solid var(--background-alt);
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.875rem;
+  display: inline-flex;
+}
+
+.feed-cards-location-chip {
+  margin-left: auto;
+  align-self: flex-start;
+}
+
+.feed-cards-day-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  margin-top: 0.75rem;
+}
+
+.feed-cards-day-pill {
+  display: inline-flex;
+  width: fit-content;
+  background: var(--sky-blue);
+  color: var(--dark-color);
+  border: 1px solid var(--dark-color);
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.feed-cards-activities {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.875rem;
+  padding-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.feed-cards-note {
+  margin: 0;
+  font-size: 0.875rem;
+  font-style: italic;
+}
