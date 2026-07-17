@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import passport from "./config/passport.js";
 import authRouter from "./routes/auth.js";
 import profileRouter from "./routes/profile.js";
+import feedRouter from "./routes/feed.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -35,6 +36,7 @@ app.use(passport.session());
 
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);
+app.use("/api/feed", feedRouter);
 
 app.use("/", express.static(path.join(__dirname, "frontend/dist")));
 
