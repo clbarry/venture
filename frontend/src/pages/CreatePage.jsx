@@ -174,7 +174,7 @@ export default function CreatePage() {
                   type="text"
                   name="caption"
                   id="caption"
-                  placeholder="Share your tips..."
+                  placeholder="Create a short caption for your itinerary"
                 />
               </div>
             </div>{" "}
