@@ -2,28 +2,83 @@
 
 /* Color Palette */
 :root {
-  --dark-font:  #1b2432; /* Dark Font */
-  --dark-color: #071425; /* Dark Blue */
-  --coral-red:  #fe5e41; /* Coral Red */
-  --orange:     #f3c178; /* Sandy Orange */
-  --sky-blue:   #92d5e6; /* Sky Blue */
-  --background: #fffaed; /* Light Cream */
+  --dark-font:      #1b2432; /* Dark Font */
+  --dark-color:     #071425; /* Dark Blue */
+  --coral-red:      #fe5e41; /* Coral Red */
+  --orange:         #f3c178; /* Sandy Orange */
+  --sky-blue:       #92d5e6; /* Sky Blue */
+  --background:     #fdf7e7; /* Lighter Cream */
+  --background-alt: #ead9b8; /* Light Cream */
+  --card-background:#ffffff; /* White */
 }
 
-.create-page {
+.create-page-body {
   font-family: "Open Sans", sans-serif;
   color: var(--dark-font);
   background-color: var(--background);
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 64px);
+  padding-left: 4.0rem;
+  padding-right: 4.0rem;
+}
+
+.create-page-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: 2.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.create-page-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 1.5rem;
+}
+
+.create-form-card {
+  border: 1px solid var(--dark-color);
+  border-radius: 0.75rem;
+  background-color: var(--card-background);
+  box-shadow: 0 8px 20px rgba(7, 20, 37, 0.12);
+  padding: 1.5rem;
+}
+
+.create-form {
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.create-form-card .form-entry {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.fitnessLevel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 
+.create-form-card .form-entry .form-check-input {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.form-control {
+  background-color: var(--background);
+}
+
 /* Create Page Buttons */
-.btn, .btn-primary {
+#publishButton {
   --bs-btn-font-weight: 500;
-  --bs-btn-font-family: "Playfair Display", serif;
+  --bs-btn-font-family: "Open Sans", sans-serif;
   --bs-btn-color: var(--background);
   --bs-btn-bg: var(--coral-red);
   --bs-btn-border-color: var(--coral-red);
@@ -33,5 +88,8 @@
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: var(--coral-red);
   --bs-btn-active-border-color: var(--dark-color);
+  width: fit-content;
   border-radius: 9999px;
 }
+
+
