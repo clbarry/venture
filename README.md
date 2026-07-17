@@ -36,7 +36,7 @@ Below are screenshots of each page of the website.
 
 # Demo Video
 
-[Demo of Prompt Explore site](https://youtu.be/yKtWTF8sdzM)
+[Demo of Venture site](https://youtu.be/yKtWTF8sdzM)
 <!-- This is my demo video, we will need to replace with our's -->
 ---
 
@@ -58,8 +58,11 @@ The visual design of this site was planned prior to development, covering layout
 
 ## Project Structure Graphic
 
+```
 venture/
 ├── .gitignore
+├── package.json
+├── server.js
 ├── config/
 │   └── passport.js
 ├── db/
@@ -68,41 +71,39 @@ venture/
 │   └── auth.js
 ├── models/
 │   └── users.js
-├── package.json
 ├── routes/
 │   ├── auth.js
 │   └── profile.js
-└── server.js
-├── frontend/
-│   ├── index.html
-│   ├── package.json
-│   ├── public/
-│   │   ├── compass.png
-│   │   ├── create.png
-│   │   ├── favicon-16x16.png
-│   │   ├── home.png
-│   │   ├── location.png
-│   │   ├── logout.png
-│   │   ├── profile.png
-│   │   └── venture-logo.png
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── FollowModal.jsx
-│   │   │   └── NavigationBar.jsx
-│   │   ├── css/
-│   │   │   ├── CreatePage.css
-│   │   │   ├── FollowModal.css
-│   │   │   ├── LoginPage.css
-│   │   │   ├── Navbar.css
-│   │   │   └── ProfilePage.css
-│   │   ├── main.jsx
-│   │   └── pages/
-│   │       ├── CreatePage.jsx
-│   │       ├── FeedPage.jsx
-│   │       ├── LoginPage.jsx
-│   │       └── ProfilePage.jsx
-│   └── vite.config.js
-
+└── frontend/
+    ├── index.html
+    ├── package.json
+    ├── vite.config.js
+    ├── public/
+    │   ├── compass.png
+    │   ├── create.png
+    │   ├── favicon-16x16.png
+    │   ├── home.png
+    │   ├── location.png
+    │   ├── logout.png
+    │   ├── profile.png
+    │   └── venture-logo.png
+    └── src/
+        ├── main.jsx
+        ├── components/
+        │   ├── FollowModal.jsx
+        │   └── NavigationBar.jsx
+        ├── css/
+        │   ├── CreatePage.css
+        │   ├── FollowModal.css
+        │   ├── LoginPage.css
+        │   ├── Navbar.css
+        │   └── ProfilePage.css
+        └── pages/
+            ├── CreatePage.jsx
+            ├── FeedPage.jsx
+            ├── LoginPage.jsx
+            └── ProfilePage.jsx
+```
 
 ## Tech Requirements
 
