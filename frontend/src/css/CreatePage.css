@@ -85,4 +85,18 @@
   border-radius: 9999px;
 }
 
+.create-publish-status {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.create-publish-status-success {
+  color: #1a7f37;
+}
+
+.create-publish-status-error {
+  color: #b42318;
+}
+
 

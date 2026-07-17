@@ -15,6 +15,8 @@ import "../css/CreatePage.css";
 export default function CreatePage() {
   const navigate = useNavigate();
   const [dayCount, setDayCount] = useState(1);
+  const [publishStatus, setPublishStatus] = useState({ type: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     fetch("/api/auth/user").then((res) => {
@@ -24,6 +26,52 @@ export default function CreatePage() {
 
   const handleDayCountChange = (event) => {
     setDayCount(Number(event.target.value));
+  };
+
+  const handleCreateSubmit = async (event) => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const body = new URLSearchParams(formData).toString();
+
+    setIsSubmitting(true);
+    setPublishStatus({ type: "", message: "" });
+
+    try {
+      const res = await fetch("/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          Accept: "application/json",
+        },
+        body,
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setPublishStatus({
+          type: "error",
+          message: data.error || "Could not save itinerary. Please try again.",
+        });
+        return;
+      }
+
+      setPublishStatus({
+        type: "success",
+        message: "Itinerary saved successfully.",
+      });
+      form.reset();
+      setDayCount(1);
+    } catch {
+      setPublishStatus({
+        type: "error",
+        message: "Could not save itinerary. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,7 +96,7 @@ export default function CreatePage() {
 
           {/* form entry - itinerary title */}
           <div className="create-form">
-            <form method="post" action="/create">
+            <form method="post" action="/create" onSubmit={handleCreateSubmit}>
               {/* form card */}
               <div className="create-form-card row g-3">
                 {/* form entry - itinerary title */}
@@ -130,7 +178,7 @@ export default function CreatePage() {
                   <label htmlFor="days">number of days</label>
                   <input
                     type="range"
-                    name="days"
+                    name="dayCount"
                     id="days"
                     min="1"
                     max="10"
@@ -149,7 +197,8 @@ export default function CreatePage() {
                   <input
                     className="form-check-input"
                     type="checkbox"
-                    value=""
+                    name="familyFriendly"
+                    value="yes"
                     id="flexCheckDefault"
                   />
                   <label
@@ -196,10 +245,21 @@ export default function CreatePage() {
                   type="submit"
                   id="publishButton"
                   className="btn btn-primary"
+                  disabled={isSubmitting}
                 >
-                  Publish
+                  {isSubmitting ? "Publishing..." : "Publish"}
                 </button>
               </div>
+
+              {publishStatus.message && (
+                <p
+                  className={`create-publish-status ${publishStatus.type === "error" ? "create-publish-status-error" : "create-publish-status-success"}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  {publishStatus.message}
+                </p>
+              )}
             </form>{" "}
             {/* form end */}
           </div>
