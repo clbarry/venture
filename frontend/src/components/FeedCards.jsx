@@ -38,7 +38,7 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
             </h2>
 
             <h3 className="feed-cards-caption">
-              {caption || "Untitled itinerary"}
+              {caption || "No caption provided."}
             </h3>
           </div>
 
@@ -60,17 +60,10 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
       <div className="feed-cards-body">
         <div className="feed-cards-meta">
           {creator && <span className="feed-cards-chip">from @{creator}</span>}
-          <span className="feed-cards-chip">{likeCount} like{likeCount === 1 ? "" : "s"}</span>
-          <button
-            type="button"
-            className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
-            onClick={() => onLike?.(itinerary._id)}
-            disabled={isLiking}
-          >
-            {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
-          </button>
-          {hasLiked && !isLiking && (
-            <span className="feed-cards-liked-indicator">You liked this</span>
+          {family_friendly && (
+            <span className="feed-cards-chip feed-cards-chip-family-friendly">
+              Family-friendly
+            </span>
           )}
         </div>
 
@@ -92,7 +85,30 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
             </ul>
           </section>
         ))}
-        {family_friendly && <p className="feed-cards-note">Family-friendly</p>}
+         <div className="feed-cards-meta">
+          <span className="feed-cards-chip">
+            <img
+              src="/likes.png"
+              alt="thumbs up like emoji"
+              width="16"
+              height="16"
+              className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
+            />
+            {likeCount} like{likeCount === 1 ? "" : "s"}
+          </span>
+          
+          {hasLiked && !isLiking && (
+            <span className="feed-cards-liked-indicator">You liked this</span>
+          )}
+          <button
+            type="button"
+            className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
+            onClick={() => onLike?.(itinerary._id)}
+            disabled={isLiking}
+          >
+            {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
+          </button>
+        </div>
       </div>
     </article>
   );

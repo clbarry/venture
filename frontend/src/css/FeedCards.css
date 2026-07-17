@@ -73,6 +73,21 @@
   display: inline-flex;
 }
 
+.feed-cards-like-icon {
+  margin-right: 0.35rem;
+  align-self: center;
+  filter: brightness(0) saturate(100%) invert(25%) sepia(33%) saturate(861%) hue-rotate(176deg) brightness(97%) contrast(94%);
+}
+
+.feed-cards-like-icon.is-liked {
+  filter: brightness(0) saturate(100%) invert(54%) sepia(95%) saturate(1738%) hue-rotate(328deg) brightness(102%) contrast(99%);
+}
+
+.feed-cards-chip-family-friendly {
+  background: transparent;
+  border-color: var(--coral-red);
+}
+
 .feed-cards-like-btn {
   --bs-btn-color: var(--dark-color);
   --bs-btn-bg: var(--sky-blue);
@@ -127,8 +142,3 @@
   margin-bottom: 0.75rem;
 }
 
-.feed-cards-note {
-  margin: 0;
-  font-size: 0.875rem;
-  font-style: italic;
-}
