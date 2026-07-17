@@ -33,6 +33,13 @@ Below are screenshots of each page of the website.
 
 ![Profile Page Screenshot](./frontend/public/screenshot-profile.png)
 
+### Home Feed Page
+
+![Profile Page Screenshot](./frontend/public/HomeFeedPage.png)
+
+### Create & Edit Page
+
+![Profile Page Screenshot](./frontend/public/CreatePage.png)
 
 # Demo Video
 
