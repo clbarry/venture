@@ -44,8 +44,13 @@ export default function FeedPage() {
   return (
     <>
       <NavigationBar />
-      <Container className="feed-page">
-        <h1>Feed</h1>
+      <div className="feed-page">
+      <Container>
+        <h1 className="feed-page-title">Your Feed</h1>
+        <p className="feed-page-description">
+          Explore the latest itineraries from people you follow, or explore the whole community of travelers.
+        </p>
+
 
         {loading && <p>Loading itineraries...</p>}
         {!loading && error && <p>{error}</p>}
@@ -62,6 +67,7 @@ export default function FeedPage() {
           </div>
         )}
       </Container>
+      </div>
     </>
   );
 }
