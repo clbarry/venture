@@ -19,6 +19,8 @@ export default function FeedCards({ itinerary }) {
   } = itinerary;
 
   const location = [city ?? cityRegion, country].filter(Boolean).join(", ");
+  const days = planToDays(itinerary);
+  const dayCount = days.length;
 
   return (
     <article className="feed-cards mb-3">
@@ -43,6 +45,13 @@ export default function FeedCards({ itinerary }) {
               {location}
             </span>
           )}
+          <div className="feed-cards-meta">
+            {dayCount > 0 && (
+              <span className="feed-cards-chip">
+                {dayCount} day{dayCount === 1 ? "" : "s"}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
@@ -59,7 +68,9 @@ export default function FeedCards({ itinerary }) {
 
         {planToDays(itinerary).map((activities, dayIndex) => (
           <section className="feed-cards-day" key={dayIndex}>
-            <h3 className="feed-cards-day-title feed-cards-day-pill">Day {dayIndex + 1}</h3>
+            <h3 className="feed-cards-day-title feed-cards-day-pill">
+              Day {dayIndex + 1}
+            </h3>
             <ul className="feed-cards-activities">
               {activities.map((activity, activityIndex) => (
                 <li key={activityIndex}>{activity}</li>
