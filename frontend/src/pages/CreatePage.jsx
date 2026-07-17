@@ -33,8 +33,8 @@ export default function CreatePage() {
       {/* create page body */}
       <main className="create-page-body">
         {/* page title */}
-        <Container className="create-page-title">
-          <h1>Create</h1>
+        <Container>
+          <h1 className="create-page-title">Create</h1>
         </Container>
 
         {/* page description */}
