@@ -39,26 +39,6 @@
     margin-top: 1rem;
 }
 
-.feed-load-more-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 0.8rem;
-}
-
-.feed-load-more-btn {
-  border: 1px solid var(--dark-color);
-  border-radius: 9999px;
-  background: #fff;
-  color: var(--dark-font);
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-}
-
-.feed-load-more-btn:hover {
-  background: var(--background-alt);
-}
-
 .feed-view-toggle {
   margin-top: 1rem;
   display: inline-flex;
