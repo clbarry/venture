@@ -35,11 +35,11 @@ Below are screenshots of each page of the website.
 
 ### Home Feed Page
 
-![Profile Page Screenshot](./frontend/public/HomeFeedPage.png)
+![Profile Page Screenshot](./frontend/public/feed-page.png)
 
 ### Create & Edit Page
 
-![Profile Page Screenshot](./frontend/public/CreatePage.png)
+![Profile Page Screenshot](./frontend/public/create-page.png)
 
 # Demo Video
 
