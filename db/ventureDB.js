@@ -75,6 +75,62 @@ function VentureDB() {
     }
   };
 
+  me.toggleItineraryLike = async (itineraryId, username) => {
+    const { client, itineraries } = connect();
+    try {
+      const id = new ObjectId(itineraryId);
+      const current = await itineraries.findOne(
+        { _id: id },
+        { projection: { likes: 1, liked_by: 1 } },
+      );
+
+      if (!current) return null;
+
+      const likedBy = Array.isArray(current.liked_by) ? current.liked_by : [];
+      const hasLiked = likedBy.includes(username);
+
+      if (hasLiked) {
+        const nextLikes = Math.max(0, (current.likes ?? 0) - 1);
+        const updated = await itineraries.findOneAndUpdate(
+          { _id: id, liked_by: username },
+          {
+            $pull: { liked_by: username },
+            $set: { likes: nextLikes },
+          },
+          {
+            returnDocument: "after",
+            projection: { likes: 1 },
+          },
+        );
+
+        return {
+          liked: false,
+          likes: updated?.likes ?? nextLikes,
+        };
+      }
+
+      const nextLikes = (current.likes ?? 0) + 1;
+      const updated = await itineraries.findOneAndUpdate(
+        { _id: id, liked_by: { $ne: username } },
+        {
+          $addToSet: { liked_by: username },
+          $set: { likes: nextLikes },
+        },
+        {
+          returnDocument: "after",
+          projection: { likes: 1 },
+        },
+      );
+
+      return {
+        liked: true,
+        likes: updated?.likes ?? nextLikes,
+      };
+    } finally {
+      await client.close();
+    }
+  };
+
   me.getAllUsers = async () => {
     const { client, profiles } = connectProfiles();
     try {

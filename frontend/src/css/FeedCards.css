@@ -73,6 +73,32 @@
   display: inline-flex;
 }
 
+.feed-cards-like-btn {
+  --bs-btn-color: var(--dark-color);
+  --bs-btn-bg: var(--sky-blue);
+  --bs-btn-border-color: var(--dark-color);
+  --bs-btn-hover-color: var(--dark-color);
+  --bs-btn-hover-bg: var(--background);
+  --bs-btn-hover-border-color: var(--dark-color);
+  border-radius: 9999px;
+}
+
+.feed-cards-like-btn.is-liked {
+  --bs-btn-bg: var(--orange);
+  --bs-btn-hover-bg: var(--coral-red);
+}
+
+.feed-cards-liked-indicator {
+  display: inline-flex;
+  align-items: center;
+  background: var(--background);
+  border: 1px solid var(--background-alt);
+  border-radius: 9999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 .feed-cards-location-chip {
   margin-left: auto;
   align-self: flex-start;

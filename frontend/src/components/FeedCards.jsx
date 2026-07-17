@@ -5,7 +5,7 @@ function planToDays(itinerary) {
   return Object.values(itinerary.plan);
 }
 
-export default function FeedCards({ itinerary }) {
+export default function FeedCards({ itinerary, onLike, isLiking = false }) {
   const {
     caption,
     title,
@@ -21,6 +21,8 @@ export default function FeedCards({ itinerary }) {
   const location = [city ?? cityRegion, country].filter(Boolean).join(", ");
   const days = planToDays(itinerary);
   const dayCount = days.length;
+  const likeCount = Number(itinerary.likes) || 0;
+  const hasLiked = Boolean(itinerary.liked);
 
   return (
     <article className="feed-cards mb-3">
@@ -58,6 +60,18 @@ export default function FeedCards({ itinerary }) {
       <div className="feed-cards-body">
         <div className="feed-cards-meta">
           {creator && <span className="feed-cards-chip">from @{creator}</span>}
+          <span className="feed-cards-chip">{likeCount} like{likeCount === 1 ? "" : "s"}</span>
+          <button
+            type="button"
+            className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
+            onClick={() => onLike?.(itinerary._id)}
+            disabled={isLiking}
+          >
+            {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
+          </button>
+          {hasLiked && !isLiking && (
+            <span className="feed-cards-liked-indicator">You liked this</span>
+          )}
         </div>
 
         {Array.isArray(collaborators) && collaborators.length > 0 && (

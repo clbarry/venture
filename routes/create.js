@@ -65,6 +65,8 @@ router.post("/create", isAuthenticated, async (req, res) => {
     city: String(cityRegion || "").trim(),
     collaborators: collaboratorList,
     family_friendly: Boolean(familyFriendly),
+    likes: 0,
+    liked_by: [],
     day_count: selectedDayCount,
     plan,
     created_at: new Date(),

@@ -10,6 +10,7 @@ export default function FeedPage() {
   const [itineraries, setItineraries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [likingById, setLikingById] = useState({});
 
   useEffect(() => {
     const loadFeed = async () => {
@@ -41,6 +42,37 @@ export default function FeedPage() {
     loadFeed();
   }, [navigate]);
 
+  const handleLike = async (itineraryId) => {
+    setLikingById((prev) => ({ ...prev, [itineraryId]: true }));
+
+    try {
+      const res = await fetch(`/api/feed/${itineraryId}/like`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.status === 401) {
+        navigate("/");
+        return;
+      }
+
+      if (!res.ok) return;
+
+      const data = await res.json();
+      setItineraries((prev) =>
+        prev.map((itinerary) =>
+          itinerary._id === itineraryId
+            ? { ...itinerary, likes: data.likes, liked: data.liked }
+            : itinerary,
+        ),
+      );
+    } catch {
+      // Keep current UI state if request fails.
+    } finally {
+      setLikingById((prev) => ({ ...prev, [itineraryId]: false }));
+    }
+  };
+
   return (
     <>
       <NavigationBar />
@@ -62,7 +94,12 @@ export default function FeedPage() {
         {!loading && !error && itineraries.length > 0 && (
           <div className="feed-list">
             {itineraries.map((itinerary) => (
-              <FeedCards key={itinerary._id} itinerary={itinerary} />
+              <FeedCards
+                key={itinerary._id}
+                itinerary={itinerary}
+                onLike={handleLike}
+                isLiking={Boolean(likingById[itinerary._id])}
+              />
             ))}
           </div>
         )}
