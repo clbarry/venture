@@ -103,6 +103,8 @@
   --bs-btn-hover-bg: var(--coral-red);
 }
 
+
+
 .feed-cards-liked-indicator {
   display: inline-flex;
   align-items: center;

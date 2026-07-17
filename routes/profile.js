@@ -22,6 +22,28 @@ router.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
+router.delete("/itineraries/:itineraryId", isAuthenticated, async (req, res) => {
+  try {
+    const result = await ventureDB.deleteItineraryByCreator(
+      req.params.itineraryId,
+      req.user.username,
+    );
+
+    if (result.reason === "not found") {
+      return res.status(404).json({ message: "Itinerary not found" });
+    }
+
+    if (result.reason === "forbidden") {
+      return res.status(403).json({ message: "You can only delete your own itineraries" });
+    }
+
+    return res.json({ message: "Itinerary deleted" });
+  } catch (err) {
+    console.error("Delete itinerary failed:", err);
+    return res.status(500).json({ message: "Failed to delete itinerary" });
+  }
+});
+
 router.delete("/", isAuthenticated, async (req, res) => {
   try {
     const { _id, username } = req.user;

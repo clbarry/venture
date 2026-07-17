@@ -52,12 +52,98 @@ function VentureDB() {
     }
   };
 
-  me.deleteItinerary = async (itineraryId) => {
+  me.getEditableItinerariesForUser = async (username) => {
     const { client, itineraries } = connect();
     try {
+      return await itineraries
+        .find(
+          {
+            $or: [{ creator: username }, { collaborators: username }],
+          },
+          {
+            projection: {
+              title: 1,
+              caption: 1,
+              creator: 1,
+              collaborators: 1,
+              updated_at: 1,
+              created_at: 1,
+            },
+          },
+        )
+        .sort({ _id: -1 })
+        .toArray();
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.getEditableItineraryById = async (itineraryId, username) => {
+    const { client, itineraries } = connect();
+    try {
+      if (!ObjectId.isValid(itineraryId)) return null;
+
+      const id = new ObjectId(itineraryId);
+      return await itineraries.findOne({
+        _id: id,
+        $or: [{ creator: username }, { collaborators: username }],
+      });
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.updateEditableItineraryById = async (itineraryId, username, updates) => {
+    const { client, itineraries } = connect();
+    try {
+      if (!ObjectId.isValid(itineraryId)) {
+        return { updated: false, reason: "not found" };
+      }
+
+      const id = new ObjectId(itineraryId);
+      const existing = await itineraries.findOne({ _id: id });
+      if (!existing) {
+        return { updated: false, reason: "not found" };
+      }
+
+      const collaborators = Array.isArray(existing.collaborators)
+        ? existing.collaborators
+        : [];
+      const canEdit = existing.creator === username || collaborators.includes(username);
+      if (!canEdit) {
+        return { updated: false, reason: "forbidden" };
+      }
+
+      await itineraries.updateOne(
+        { _id: id },
+        {
+          $set: {
+            ...updates,
+            updated_at: new Date(),
+          },
+        },
+      );
+
+      return { updated: true };
+    } finally {
+      await client.close();
+    }
+  };
+
+  me.deleteItineraryByCreator = async (itineraryId, username) => {
+    const { client, itineraries } = connect();
+    try {
+      if (!ObjectId.isValid(itineraryId)) {
+        return { deleted: false, reason: "not found" };
+      }
+
       const id = new ObjectId(itineraryId);
       const it = await itineraries.findOne({ _id: id });
       if (!it) return { deleted: false, reason: "not found" };
+
+      if (it.creator !== username) {
+        return { deleted: false, reason: "forbidden" };
+      }
 
       await itineraries.deleteOne({ _id: id });
       return { deleted: true };

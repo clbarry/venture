@@ -88,6 +88,8 @@ export default function FeedPage() {
     }
   };
 
+
+
   const normalizedQuery = searchQuery.trim().toLowerCase();
   const followedItineraries = itineraries.filter((itinerary) => {
     const collaborators = Array.isArray(itinerary.collaborators)
@@ -101,8 +103,9 @@ export default function FeedPage() {
   });
 
   const baseItineraries = feedView === "all" ? itineraries : followedItineraries;
+  const searchSourceItineraries = normalizedQuery ? itineraries : baseItineraries;
 
-  const filteredItineraries = baseItineraries.filter((itinerary) => {
+  const filteredItineraries = searchSourceItineraries.filter((itinerary) => {
     if (!normalizedQuery) return true;
 
     const collaborators = Array.isArray(itinerary.collaborators)

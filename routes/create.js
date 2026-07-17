@@ -13,7 +13,7 @@ function normalizeDayEntries(daysRaw) {
   return [];
 }
 
-router.post("/create", isAuthenticated, async (req, res) => {
+function buildItineraryPayload(body) {
   const {
     title,
     caption,
@@ -25,10 +25,10 @@ router.post("/create", isAuthenticated, async (req, res) => {
     familyFriendly,
     collaborators,
     days,
-  } = req.body;
+  } = body;
 
   if (!title || !theme || !fitnessLevel || !dayCount) {
-    return res.status(400).json({ error: "Missing required fields" });
+    return { error: "Missing required fields" };
   }
 
   const daysList = normalizeDayEntries(days);
@@ -41,7 +41,6 @@ router.post("/create", isAuthenticated, async (req, res) => {
     plan[`day_${index + 1}`] = activities;
   });
 
-  // Ensure plan has keys up to selected day count even when some days have no activities yet.
   const selectedDayCount = Number(dayCount) || 0;
   for (let i = 1; i <= selectedDayCount; i += 1) {
     const key = `day_${i}`;
@@ -55,20 +54,61 @@ router.post("/create", isAuthenticated, async (req, res) => {
     .map((value) => value.trim().replace(/^@+/, ""))
     .filter(Boolean);
 
+  return {
+    payload: {
+      title: String(title).trim(),
+      caption: String(caption || "").trim() || String(title).trim(),
+      theme: String(theme).trim(),
+      fitness_level: String(fitnessLevel).trim(),
+      country: String(country || "").trim(),
+      city: String(cityRegion || "").trim(),
+      collaborators: collaboratorList,
+      family_friendly: Boolean(familyFriendly),
+      day_count: selectedDayCount,
+      plan,
+    },
+  };
+}
+
+router.get("/create/editable", isAuthenticated, async (req, res) => {
+  try {
+    const itineraries = await ventureDB.getEditableItinerariesForUser(req.user.username);
+    return res.json({ itineraries });
+  } catch (error) {
+    console.error("Load editable itineraries failed:", error);
+    return res.status(500).json({ error: "Could not load editable itineraries" });
+  }
+});
+
+router.get("/create/:itineraryId", isAuthenticated, async (req, res) => {
+  try {
+    const itinerary = await ventureDB.getEditableItineraryById(
+      req.params.itineraryId,
+      req.user.username,
+    );
+
+    if (!itinerary) {
+      return res.status(404).json({ error: "Itinerary not found" });
+    }
+
+    return res.json({ itinerary });
+  } catch (error) {
+    console.error("Load itinerary for edit failed:", error);
+    return res.status(500).json({ error: "Could not load itinerary" });
+  }
+});
+
+router.post("/create", isAuthenticated, async (req, res) => {
+  const built = buildItineraryPayload(req.body);
+  if (built.error) {
+    return res.status(400).json({ error: built.error });
+  }
+
   const record = {
-    title: String(title).trim(),
-    caption: String(caption || "").trim() || String(title).trim(),
+    ...built.payload,
     creator: req.user.username,
-    theme: String(theme).trim(),
-    fitness_level: String(fitnessLevel).trim(),
-    country: String(country || "").trim(),
-    city: String(cityRegion || "").trim(),
-    collaborators: collaboratorList,
-    family_friendly: Boolean(familyFriendly),
     likes: 0,
     liked_by: [],
-    day_count: selectedDayCount,
-    plan,
     created_at: new Date(),
   };
 
@@ -84,6 +124,34 @@ router.post("/create", isAuthenticated, async (req, res) => {
   } catch (error) {
     console.error("Create failed:", error);
     return res.status(500).json({ error: error.message });
+  }
+});
+
+router.put("/create/:itineraryId", isAuthenticated, async (req, res) => {
+  const built = buildItineraryPayload(req.body);
+  if (built.error) {
+    return res.status(400).json({ error: built.error });
+  }
+
+  try {
+    const result = await ventureDB.updateEditableItineraryById(
+      req.params.itineraryId,
+      req.user.username,
+      built.payload,
+    );
+
+    if (result.reason === "not found") {
+      return res.status(404).json({ error: "Itinerary not found" });
+    }
+
+    if (result.reason === "forbidden") {
+      return res.status(403).json({ error: "You cannot edit this itinerary" });
+    }
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.error("Update itinerary failed:", error);
+    return res.status(500).json({ error: "Could not update itinerary" });
   }
 });
 

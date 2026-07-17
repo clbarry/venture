@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "../css/DayPlans.css";
 
-export default function DayPlans({ dayNumber }) {
+export default function DayPlans({
+  dayNumber,
+  activities = [],
+  onActivitiesChange,
+}) {
   const [activityInput, setActivityInput] = useState("");
-  const [activities, setActivities] = useState([]);
 
   const handleAddActivity = () => {
     const trimmedValue = activityInput.trim();
@@ -11,8 +14,12 @@ export default function DayPlans({ dayNumber }) {
       return;
     }
 
-    setActivities((prev) => [...prev, trimmedValue]);
+    onActivitiesChange?.([...activities, trimmedValue]);
     setActivityInput("");
+  };
+
+  const handleRemoveActivity = (indexToRemove) => {
+    onActivitiesChange?.(activities.filter((_, index) => index !== indexToRemove));
   };
 
   const handleActivityKeyDown = (event) => {
@@ -60,7 +67,16 @@ export default function DayPlans({ dayNumber }) {
         {activities.length > 0 && (
           <ul>
             {activities.map((activity, index) => (
-              <li key={`${activity}-${index}`}>{activity}</li>
+              <li key={`${activity}-${index}`}>
+                {activity}
+                <button
+                  type="button"
+                  className="btn btn-link btn-sm"
+                  onClick={() => handleRemoveActivity(index)}
+                >
+                  Remove
+                </button>
+              </li>
             ))}
           </ul>
         )}

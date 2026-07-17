@@ -5,7 +5,11 @@ function planToDays(itinerary) {
   return Object.values(itinerary.plan);
 }
 
-export default function FeedCards({ itinerary, onLike, isLiking = false }) {
+export default function FeedCards({
+  itinerary,
+  onLike,
+  isLiking = false,
+}) {
   const {
     caption,
     title,
