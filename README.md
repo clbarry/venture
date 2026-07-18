@@ -35,15 +35,15 @@ Below are screenshots of each page of the website.
 
 ### Home Feed Page
 
-![Profile Page Screenshot](./frontend/public/feed-page.png)
+![Home Feed Page Screenshot](./frontend/public/feed-page.png)
 
 ### Create & Edit Page
 
-![Profile Page Screenshot](./frontend/public/create-page.png)
+![Edite and Create Page Screenshot](./frontend/public/create-page.png)
 
 # Demo Video
 
-[Demo of Venture site](https://youtu.be/yKtWTF8sdzM)
+[Demo of Venture site](https://youtu.be/RGJaSWaeLGg)
 <!-- This is my demo video, we will need to replace with our's -->
 ---
 

@@ -5,6 +5,15 @@ import { useNavigate } from "react-router";
 import FeedCards from "../components/FeedCards.jsx";
 import "../css/FeedPage.css";
 
+function shuffleList(items) {
+  const next = [...items];
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [next[i], next[j]] = [next[j], next[i]];
+  }
+  return next;
+}
+
 export default function FeedPage() {
   const navigate = useNavigate();
   const [itineraries, setItineraries] = useState([]);
@@ -15,6 +24,8 @@ export default function FeedPage() {
   const [currentFollowing, setCurrentFollowing] = useState([]);
   const [feedView, setFeedView] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [randomizedBaseItineraries, setRandomizedBaseItineraries] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(25);
 
   useEffect(() => {
     const loadFeed = async () => {
@@ -105,6 +116,15 @@ export default function FeedPage() {
   const baseItineraries = feedView === "all" ? itineraries : followedItineraries;
   const searchSourceItineraries = normalizedQuery ? itineraries : baseItineraries;
 
+  useEffect(() => {
+    setRandomizedBaseItineraries(shuffleList(baseItineraries));
+    setVisibleCount(25);
+  }, [feedView, itineraries, currentFollowing]);
+
+  useEffect(() => {
+    setVisibleCount(25);
+  }, [normalizedQuery]);
+
   const filteredItineraries = searchSourceItineraries.filter((itinerary) => {
     if (!normalizedQuery) return true;
 
@@ -129,6 +149,14 @@ export default function FeedPage() {
 
     return searchableText.includes(normalizedQuery);
   });
+
+  const sourceItineraries = normalizedQuery
+    ? filteredItineraries
+    : randomizedBaseItineraries;
+
+  const displayedItineraries = sourceItineraries.slice(0, visibleCount);
+
+  const canLoadMore = displayedItineraries.length < sourceItineraries.length;
 
   return (
     <>
@@ -191,9 +219,9 @@ export default function FeedPage() {
           <p>No matching itineraries for your search.</p>
         )}
 
-        {!loading && !error && filteredItineraries.length > 0 && (
+        {!loading && !error && displayedItineraries.length > 0 && (
           <div className="feed-list">
-            {filteredItineraries.map((itinerary) => (
+            {displayedItineraries.map((itinerary) => (
               <FeedCards
                 key={itinerary._id}
                 itinerary={itinerary}
@@ -201,6 +229,24 @@ export default function FeedPage() {
                 isLiking={Boolean(likingById[itinerary._id])}
               />
             ))}
+          </div>
+        )}
+
+        {!loading && !error && displayedItineraries.length > 0 && (
+          <p className="text-center mt-3 mb-2">
+            Showing {displayedItineraries.length} of {sourceItineraries.length}
+          </p>
+        )}
+
+        {!loading && !error && canLoadMore && (
+          <div className="d-flex justify-content-center mt-3">
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => setVisibleCount((prev) => prev + 25)}
+            >
+              Load 25 More
+            </button>
           </div>
         )}
       </Container>
