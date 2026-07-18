@@ -265,7 +265,7 @@ This project was developed in connection with the course:
 
 This project is deployed on Render.
 
-Link: (https://venture-p3.onrender.com/m)
+Link: (https://venture-p3.onrender.com)
 
 
 Deployment note:
