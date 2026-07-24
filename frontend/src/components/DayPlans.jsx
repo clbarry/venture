@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "../css/DayPlans.css";
 
 export default function DayPlans({
@@ -85,3 +86,9 @@ export default function DayPlans({
     </div>
   );
 }
+
+DayPlans.propTypes = {
+  dayNumber: PropTypes.number.isRequired,
+  activities: PropTypes.arrayOf(PropTypes.string),
+  onActivitiesChange: PropTypes.func,
+};

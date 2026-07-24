@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "../css/FeedCards.css";
 
 function planToDays(itinerary) {
@@ -117,3 +118,23 @@ export default function FeedCards({
     </article>
   );
 }
+
+FeedCards.propTypes = {
+  itinerary: PropTypes.shape({
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+    title: PropTypes.string,
+    caption: PropTypes.string,
+    creator: PropTypes.string,
+    theme: PropTypes.string,
+    city: PropTypes.string,
+    cityRegion: PropTypes.string,
+    country: PropTypes.string,
+    collaborators: PropTypes.arrayOf(PropTypes.string),
+    family_friendly: PropTypes.bool,
+    likes: PropTypes.number,
+    liked: PropTypes.bool,
+    plan: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+  }).isRequired,
+  onLike: PropTypes.func,
+  isLiking: PropTypes.bool,
+};
