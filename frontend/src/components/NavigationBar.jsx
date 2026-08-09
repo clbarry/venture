@@ -42,11 +42,11 @@ export default function NavigationBar() {
 
             <Nav.Link as={NavLink} to="/create" className="venture-nav-link">
               <img
-                src="/create.png"
-                alt="A plus button to indicate create"
+                src="/pencil.png"
+                alt="A pencil button to indicate create, edit, and delete"
                 className="venture-nav-icon"
               />
-              Create + Edit
+              Curate
             </Nav.Link>
 
             <Nav.Link as={NavLink} to="/profile" className="venture-nav-link">
