@@ -322,9 +322,9 @@ export default function CreatePage() {
 
           {/* page description */}
           <header className="create-page-header">
-            <h3 className="create-page-headline">Plan your next adventure</h3>
             <p className="create-page-description">
-              Sketch a day-by-day plan and share it with your people.
+              Sketch a day-by-day plan to plan your next adventure and share it
+              with your people.
             </p>
           </header>
 
@@ -337,8 +337,8 @@ export default function CreatePage() {
                     Create, edit, and delete your itineraries.
                   </h3>
                   <label htmlFor="editableItinerary">
-                    Select an itinerary to edit or delete an existing itinerary
-                    or select "Create new itinerary" to start a new one.
+                    Select an existing itinerary to edit or delete or select
+                    "Create new itinerary" to start a new one.
                   </label>
                   <select
                     id="editableItinerary"
