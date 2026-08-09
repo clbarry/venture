@@ -46,7 +46,7 @@ export default function NavigationBar() {
                 alt="A plus button to indicate create"
                 className="venture-nav-icon"
               />
-              Create
+              Create + Edit
             </Nav.Link>
 
             <Nav.Link as={NavLink} to="/profile" className="venture-nav-link">

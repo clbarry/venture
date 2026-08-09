@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import "../css/FeedCards.css";
 
 function planToDays(itinerary) {
@@ -5,11 +6,7 @@ function planToDays(itinerary) {
   return Object.values(itinerary.plan);
 }
 
-export default function FeedCards({
-  itinerary,
-  onLike,
-  isLiking = false,
-}) {
+export default function FeedCards({ itinerary, onLike, isLiking = false }) {
   const {
     caption,
     title,
@@ -89,7 +86,7 @@ export default function FeedCards({
             </ul>
           </section>
         ))}
-         <div className="feed-cards-meta">
+        <div className="feed-cards-meta">
           <span className="feed-cards-chip">
             <img
               src="/likes.png"
@@ -100,7 +97,7 @@ export default function FeedCards({
             />
             {likeCount} like{likeCount === 1 ? "" : "s"}
           </span>
-          
+
           {hasLiked && !isLiking && (
             <span className="feed-cards-liked-indicator">You liked this</span>
           )}
@@ -117,3 +114,23 @@ export default function FeedCards({
     </article>
   );
 }
+
+FeedCards.propTypes = {
+  itinerary: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+    title: PropTypes.string,
+    creator: PropTypes.string,
+    theme: PropTypes.string,
+    city: PropTypes.string,
+    cityRegion: PropTypes.string,
+    country: PropTypes.string,
+    collaborators: PropTypes.arrayOf(PropTypes.string),
+    family_friendly: PropTypes.bool,
+    plan: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
+    likes: PropTypes.number,
+    liked: PropTypes.bool,
+  }).isRequired,
+  onLike: PropTypes.func,
+  isLiking: PropTypes.bool,
+};

@@ -51,5 +51,6 @@ secrets.json
 .claude/settings.local.json
 
 # Ignore any other files that are not necessary for version control, such as temporary files, build artifacts, or sensitive information. You can add additional patterns to the .gitignore file as needed for your specific project.
-venture/data/generate_itineraries_1000.mjs
-venture/data/itineraries_1000.json
+data/generate_itineraries_1000.mjs
+data/itineraries_1000.json
+
