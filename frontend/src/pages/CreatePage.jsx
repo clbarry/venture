@@ -2,6 +2,7 @@
 /* Resource, React Bootstrap :https://react-bootstrap.netlify.app/docs/forms/overview */
 
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 
 /* Import React components */
 import { useEffect, useState } from "react";
@@ -316,13 +317,12 @@ export default function CreatePage() {
       <main className="create-page-body">
         {/* page title */}
         <Container>
-          <h1 className="create-page-title">Create & Edit Itineraries</h1>
+          <h1 className="create-page-title">Curate Your Itineraries</h1>
+          <h2 className="create-page-subheadline">Create, Edit, & Delete</h2>
 
           {/* page description */}
           <header className="create-page-header">
-            <h2 className="create-page-headline">
-              Create or edit an itinerary & plan your next adventure.
-            </h2>
+            <h3 className="create-page-headline">Plan your next adventure</h3>
             <p className="create-page-description">
               Sketch a day-by-day plan and share it with your people.
             </p>
@@ -333,8 +333,12 @@ export default function CreatePage() {
             <form method="post" action="/create" onSubmit={handleCreateSubmit}>
               <div className="create-form-card row g-3 create-edit-card">
                 <div className="form-entry col-12">
+                  <h3 className="create-page-subheadline">
+                    Create, edit, and delete your itineraries.
+                  </h3>
                   <label htmlFor="editableItinerary">
-                    Create a new itinerary or edit an existing itinerary
+                    Select an itinerary to edit or delete an existing itinerary
+                    or select "Create new itinerary" to start a new one.
                   </label>
                   <select
                     id="editableItinerary"
