@@ -14,7 +14,8 @@ import "../css/CreatePage.css";
 
 export default function CreatePage() {
   const navigate = useNavigate();
-  const initialEditId = new URLSearchParams(window.location.search).get("edit") || "";
+  const initialEditId =
+    new URLSearchParams(window.location.search).get("edit") || "";
   const [editableItineraries, setEditableItineraries] = useState([]);
   const [selectedItineraryId, setSelectedItineraryId] = useState("");
   const [dayCount, setDayCount] = useState(1);
@@ -68,7 +69,10 @@ export default function CreatePage() {
     const nextCount = Number(event.target.value);
     setDayCount(nextCount);
     setDayActivities((prev) => {
-      const next = Array.from({ length: nextCount }, (_, index) => prev[index] ?? []);
+      const next = Array.from(
+        { length: nextCount },
+        (_, index) => prev[index] ?? [],
+      );
       return next;
     });
   };
@@ -82,7 +86,9 @@ export default function CreatePage() {
   };
 
   const handleDayActivitiesChange = (dayIndex, nextActivities) => {
-    setDayActivities((prev) => prev.map((day, index) => (index === dayIndex ? nextActivities : day)));
+    setDayActivities((prev) =>
+      prev.map((day, index) => (index === dayIndex ? nextActivities : day)),
+    );
   };
 
   const resetCreateForm = () => {
@@ -104,7 +110,7 @@ export default function CreatePage() {
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
-      "Delete this itinerary? This cannot be undone."
+      "Delete this itinerary? This cannot be undone.",
     );
     if (!confirmed) return;
 
@@ -112,9 +118,12 @@ export default function CreatePage() {
     setPublishStatus({ type: "", message: "" });
 
     try {
-      const res = await fetch(`/api/profile/itineraries/${selectedItineraryId}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `/api/profile/itineraries/${selectedItineraryId}`,
+        {
+          method: "DELETE",
+        },
+      );
 
       if (!res.ok) {
         setPublishStatus({
@@ -167,7 +176,10 @@ export default function CreatePage() {
       const itinerary = data.itinerary;
 
       const count = Number(itinerary.day_count) || 1;
-      const plan = itinerary.plan && typeof itinerary.plan === "object" ? itinerary.plan : {};
+      const plan =
+        itinerary.plan && typeof itinerary.plan === "object"
+          ? itinerary.plan
+          : {};
       const loadedDays = Array.from({ length: count }, (_, index) => {
         const values = plan[`day_${index + 1}`];
         return Array.isArray(values) ? values : [];
@@ -187,7 +199,11 @@ export default function CreatePage() {
       });
       setDayCount(count);
       setDayActivities(loadedDays);
-      window.history.replaceState({}, "", `/create?edit=${encodeURIComponent(itineraryId)}`);
+      window.history.replaceState(
+        {},
+        "",
+        `/create?edit=${encodeURIComponent(itineraryId)}`,
+      );
     } catch {
       setPublishStatus({
         type: "error",
@@ -243,14 +259,17 @@ export default function CreatePage() {
 
     try {
       const isEditMode = Boolean(selectedItineraryId);
-      const res = await fetch(isEditMode ? `/create/${selectedItineraryId}` : "/create", {
-        method: isEditMode ? "PUT" : "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          Accept: "application/json",
+      const res = await fetch(
+        isEditMode ? `/create/${selectedItineraryId}` : "/create",
+        {
+          method: isEditMode ? "PUT" : "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            Accept: "application/json",
+          },
+          body: bodyParams.toString(),
         },
-        body: bodyParams.toString(),
-      });
+      );
 
       const data = await res.json().catch(() => ({}));
 
@@ -314,7 +333,9 @@ export default function CreatePage() {
             <form method="post" action="/create" onSubmit={handleCreateSubmit}>
               <div className="create-form-card row g-3 create-edit-card">
                 <div className="form-entry col-12">
-                  <label htmlFor="editableItinerary">Create a new itinerary or edit an existing itinerary</label>
+                  <label htmlFor="editableItinerary">
+                    Create a new itinerary or edit an existing itinerary
+                  </label>
                   <select
                     id="editableItinerary"
                     className="form-select"
@@ -325,16 +346,15 @@ export default function CreatePage() {
                     <option value="">Create new itinerary</option>
                     {editableItineraries.map((itinerary) => (
                       <option key={itinerary._id} value={itinerary._id}>
-                        {(itinerary.title || itinerary.caption || "Untitled itinerary") +
-                          ` (${itinerary.creator})`}
+                        {(itinerary.title ||
+                          itinerary.caption ||
+                          "Untitled itinerary") + ` (${itinerary.creator})`}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
-
               <br />
-
               {/* form card */}
               <div className="create-form-card row g-3">
                 {/* form entry - itinerary title */}
@@ -503,7 +523,9 @@ export default function CreatePage() {
                   key={`${selectedItineraryId || "new"}-${index}`}
                   dayNumber={index + 1}
                   activities={dayActivities[index] ?? []}
-                  onActivitiesChange={(next) => handleDayActivitiesChange(index, next)}
+                  onActivitiesChange={(next) =>
+                    handleDayActivitiesChange(index, next)
+                  }
                 />
               ))}
               {/* submit button */}
@@ -544,7 +566,6 @@ export default function CreatePage() {
                   </>
                 )}
               </div>
-
               {publishStatus.message && (
                 <p
                   className={`create-publish-status ${publishStatus.type === "error" ? "create-publish-status-error" : "create-publish-status-success"}`}
