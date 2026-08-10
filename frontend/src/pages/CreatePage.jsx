@@ -521,7 +521,6 @@ export default function CreatePage() {
               </div>{" "}
               {/* form create-form-card end */}
               <br />
-              <br />
               {Array.from({ length: dayCount }, (_, index) => (
                 <DayPlans
                   key={`${selectedItineraryId || "new"}-${index}`}
