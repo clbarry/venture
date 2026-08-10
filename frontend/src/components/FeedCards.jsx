@@ -17,6 +17,7 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
     country,
     collaborators,
     family_friendly,
+    tips,
   } = itinerary;
 
   const location = [city ?? cityRegion, country].filter(Boolean).join(", ");
@@ -74,6 +75,12 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
           </p>
         )}
 
+        {tips && (
+          <p className="feed-cards-tips">
+            <strong>Travel tips:</strong> {tips}
+          </p>
+        )}
+
         {planToDays(itinerary).map((activities, dayIndex) => (
           <section className="feed-cards-day" key={dayIndex}>
             <h3 className="feed-cards-day-title feed-cards-day-pill">
@@ -127,6 +134,7 @@ FeedCards.propTypes = {
     country: PropTypes.string,
     collaborators: PropTypes.arrayOf(PropTypes.string),
     family_friendly: PropTypes.bool,
+    tips: PropTypes.string,
     plan: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string)),
     likes: PropTypes.number,
     liked: PropTypes.bool,
