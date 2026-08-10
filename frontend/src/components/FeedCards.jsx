@@ -118,30 +118,37 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
                 )}
               </div>
 
-              {Array.isArray(collaborators) && collaborators.length > 0 && (
-                <p className="feed-cards-collaborators">
-                  Collaborators: {collaborators.map((u) => `@${u}`).join(", ")}
-                </p>
-              )}
+              <div className="feed-cards-tips-section">
+                {tips && (
+                  <p className="feed-cards-tips">
+                    <strong>Travel tips:</strong> {tips}
+                  </p>
+                )}
+              </div>
 
-              {tips && (
-                <p className="feed-cards-tips">
-                  <strong>Travel tips:</strong> {tips}
-                </p>
-              )}
+              <div className="feed-cards-days-section">
+                {planToDays(itinerary).map((activities, dayIndex) => (
+                  <section className="feed-cards-day" key={dayIndex}>
+                    <h3 className="feed-cards-day-title feed-cards-day-pill">
+                      Day {dayIndex + 1}
+                    </h3>
+                    <ul className="feed-cards-activities">
+                      {activities.map((activity, activityIndex) => (
+                        <li key={activityIndex}>{activity}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
 
-              {planToDays(itinerary).map((activities, dayIndex) => (
-                <section className="feed-cards-day" key={dayIndex}>
-                  <h3 className="feed-cards-day-title feed-cards-day-pill">
-                    Day {dayIndex + 1}
-                  </h3>
-                  <ul className="feed-cards-activities">
-                    {activities.map((activity, activityIndex) => (
-                      <li key={activityIndex}>{activity}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
+              <div className="feed-cards-collaborators-section">
+                {Array.isArray(collaborators) && collaborators.length > 0 && (
+                  <p className="feed-cards-collaborators">
+                    Collaborators:{" "}
+                    {collaborators.map((u) => `@${u}`).join(", ")}
+                  </p>
+                )}
+              </div>
             </div>
           </Accordion.Body>
         </Accordion.Item>
