@@ -24,7 +24,9 @@ export default function FeedPage() {
   const [currentFollowing, setCurrentFollowing] = useState([]);
   const [feedView, setFeedView] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [randomizedBaseItineraries, setRandomizedBaseItineraries] = useState([]);
+  const [randomizedBaseItineraries, setRandomizedBaseItineraries] = useState(
+    [],
+  );
   const [visibleCount, setVisibleCount] = useState(25);
 
   useEffect(() => {
@@ -55,7 +57,9 @@ export default function FeedPage() {
           const userData = await userRes.json();
           setCurrentUsername(userData?.user?.username ?? "");
           setCurrentFollowing(
-            Array.isArray(userData?.user?.following) ? userData.user.following : [],
+            Array.isArray(userData?.user?.following)
+              ? userData.user.following
+              : [],
           );
         }
       } catch {
@@ -99,8 +103,6 @@ export default function FeedPage() {
     }
   };
 
-
-
   const normalizedQuery = searchQuery.trim().toLowerCase();
   const followedItineraries = itineraries.filter((itinerary) => {
     const collaborators = Array.isArray(itinerary.collaborators)
@@ -113,8 +115,18 @@ export default function FeedPage() {
     );
   });
 
-  const baseItineraries = feedView === "all" ? itineraries : followedItineraries;
-  const searchSourceItineraries = normalizedQuery ? itineraries : baseItineraries;
+  const likedItineraries = itineraries.filter((itinerary) =>
+    Boolean(itinerary.liked),
+  );
+  const baseItineraries =
+    feedView === "all"
+      ? itineraries
+      : feedView === "liked"
+        ? likedItineraries
+        : followedItineraries;
+  const searchSourceItineraries = normalizedQuery
+    ? itineraries
+    : baseItineraries;
 
   useEffect(() => {
     setRandomizedBaseItineraries(shuffleList(baseItineraries));
@@ -162,94 +174,113 @@ export default function FeedPage() {
     <>
       <NavigationBar />
       <div className="feed-page">
-      <Container>
-        <h1 className="feed-page-title">Your Feed</h1>
-        <p className="feed-page-description">
-          Explore the latest itineraries from people you follow, or explore the whole community of travelers.
-        </p>
-
-        {!loading && !error && (
-          <div className="feed-view-toggle" role="group" aria-label="Feed view">
-            <button
-              type="button"
-              className={`feed-view-btn${feedView === "followed" ? " is-active" : ""}`}
-              onClick={() => setFeedView("followed")}
-            >
-              Following
-            </button>
-            <button
-              type="button"
-              className={`feed-view-btn${feedView === "all" ? " is-active" : ""}`}
-              onClick={() => setFeedView("all")}
-            >
-              All Users
-            </button>
-          </div>
-        )}
-
-        {!loading && !error && currentUsername && (
-          <div className="feed-search-wrap">
-            <label className="feed-search-label" htmlFor="feed-search-input">
-              Search itineraries
-            </label>
-            <input
-              id="feed-search-input"
-              type="search"
-              className="feed-search-input"
-              placeholder="Search by title, caption, theme, location, or username"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-            />
-          </div>
-        )}
-
-
-        {loading && <p>Loading itineraries...</p>}
-        {!loading && error && <p>{error}</p>}
-
-        {!loading && !error && baseItineraries.length === 0 && (
-          <p>
-            {feedView === "all"
-              ? "No itineraries yet."
-              : "No itineraries yet from people you follow."}
+        <Container>
+          <h1 className="feed-page-title">Travel Feed</h1>
+          <p className="feed-page-description">
+            Explore itineraries from people you follow, liked itineraries, or
+            explore the whole community of travelers.
           </p>
-        )}
 
-        {!loading && !error && baseItineraries.length > 0 && filteredItineraries.length === 0 && (
-          <p>No matching itineraries for your search.</p>
-        )}
+          {!loading && !error && (
+            <div
+              className="feed-view-toggle"
+              role="group"
+              aria-label="Feed view"
+            >
+              <button
+                type="button"
+                className={`feed-view-btn${feedView === "all" ? " is-active" : ""}`}
+                onClick={() => setFeedView("all")}
+              >
+                All Users
+              </button>
 
-        {!loading && !error && displayedItineraries.length > 0 && (
-          <div className="feed-list">
-            {displayedItineraries.map((itinerary) => (
-              <FeedCards
-                key={itinerary._id}
-                itinerary={itinerary}
-                onLike={handleLike}
-                isLiking={Boolean(likingById[itinerary._id])}
+              <button
+                type="button"
+                className={`feed-view-btn${feedView === "followed" ? " is-active" : ""}`}
+                onClick={() => setFeedView("followed")}
+              >
+                Following
+              </button>
+
+              <button
+                type="button"
+                className={`feed-view-btn${feedView === "liked" ? " is-active" : ""}`}
+                onClick={() => setFeedView("liked")}
+              >
+                Liked Itineraries
+              </button>
+            </div>
+          )}
+
+          {!loading && !error && currentUsername && (
+            <div className="feed-search-wrap">
+              <label className="feed-search-label" htmlFor="feed-search-input">
+                Search itineraries
+              </label>
+              <input
+                id="feed-search-input"
+                type="search"
+                className="feed-search-input"
+                placeholder="Search by title, caption, theme, location, or username"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
               />
-            ))}
-          </div>
-        )}
+            </div>
+          )}
 
-        {!loading && !error && displayedItineraries.length > 0 && (
-          <p className="text-center mt-3 mb-2">
-            Showing {displayedItineraries.length} of {sourceItineraries.length}
-          </p>
-        )}
+          {loading && <p>Loading itineraries...</p>}
+          {!loading && error && <p>{error}</p>}
 
-        {!loading && !error && canLoadMore && (
-          <div className="d-flex justify-content-center mt-3">
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => setVisibleCount((prev) => prev + 25)}
-            >
-              Load 25 More
-            </button>
-          </div>
-        )}
-      </Container>
+          {!loading && !error && baseItineraries.length === 0 && (
+            <p>
+              {feedView === "all"
+                ? "No itineraries yet."
+                : feedView === "liked"
+                  ? "No liked itineraries yet."
+                  : "No itineraries yet from people you follow."}
+            </p>
+          )}
+
+          {!loading &&
+            !error &&
+            baseItineraries.length > 0 &&
+            filteredItineraries.length === 0 && (
+              <p>No matching itineraries for your search.</p>
+            )}
+
+          {!loading && !error && displayedItineraries.length > 0 && (
+            <div className="feed-list">
+              {displayedItineraries.map((itinerary) => (
+                <FeedCards
+                  key={itinerary._id}
+                  itinerary={itinerary}
+                  onLike={handleLike}
+                  isLiking={Boolean(likingById[itinerary._id])}
+                />
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && displayedItineraries.length > 0 && (
+            <p className="text-center mt-3 mb-2">
+              Showing {displayedItineraries.length} of{" "}
+              {sourceItineraries.length}
+            </p>
+          )}
+
+          {!loading && !error && canLoadMore && (
+            <div className="d-flex justify-content-center mt-3">
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                onClick={() => setVisibleCount((prev) => prev + 25)}
+              >
+                Load 25 More
+              </button>
+            </div>
+          )}
+        </Container>
       </div>
     </>
   );
