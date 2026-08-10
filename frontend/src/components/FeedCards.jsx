@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Accordion from "react-bootstrap/Accordion";
 import "../css/FeedCards.css";
 
 function planToDays(itinerary) {
@@ -28,101 +29,116 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
 
   return (
     <article className="feed-cards mb-3">
-      <div className="feed-cards-header">
-        <div className="feed-cards-header-row">
-          <div className="feed-cards-heading-group">
-            <div className="feed-cards-header-top-row">
-              <div className="feed-cards-theme">
-                {theme && <span className="feed-cards-chip">{theme}</span>}
-              </div>
+      <Accordion defaultActiveKey={null}>
+        <Accordion.Item eventKey="0" flush={true} collapse="true">
+          <Accordion.Header className="accordion accordion-header">
+            <div className="feed-cards-header">
+              <div className="feed-cards-header-row">
+                <div className="feed-cards-heading-group">
+                  <div className="feed-cards-header-top-row">
+                    <div className="feed-cards-theme">
+                      {theme && (
+                        <span className="feed-cards-chip">{theme}</span>
+                      )}
+                    </div>
 
-              <div className="feed-cards-location">
-                {location && (
-                  <span className="feed-cards-chip feed-cards-location-chip">
-                    {location}
-                  </span>
-                )}
-              </div>
+                    <div className="feed-cards-location">
+                      {location && (
+                        <span className="feed-cards-chip feed-cards-location-chip">
+                          {location}
+                        </span>
+                      )}
+                    </div>
 
-              <div className="feed-cards-days">
-                {dayCount > 0 && (
-                  <span className="feed-cards-chip">
-                    {dayCount} day{dayCount === 1 ? "" : "s"}
-                  </span>
-                )}
+                    <div className="feed-cards-days">
+                      {dayCount > 0 && (
+                        <span className="feed-cards-chip">
+                          {dayCount} day{dayCount === 1 ? "" : "s"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <h2 className="feed-cards-title">
+                    {title || "Untitled itinerary"}
+                  </h2>
+
+                  <h3 className="feed-cards-caption">
+                    {caption || "No caption provided."}
+                  </h3>
+
+                  <div className="feed-cards-meta">
+                    <div className="feed-cards-meta">
+                      <span className="feed-cards-chip">
+                        <img
+                          src="/likes.png"
+                          alt="thumbs up like emoji"
+                          width="16"
+                          height="16"
+                          className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
+                        />
+                        {likeCount} like{likeCount === 1 ? "" : "s"}
+                      </span>
+
+                      <button
+                        type="button"
+                        className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
+                        onClick={() => onLike?.(itinerary._id)}
+                        disabled={isLiking}
+                      >
+                        {isLiking
+                          ? "Updating..."
+                          : hasLiked
+                            ? "Unlike"
+                            : "Like"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <h2 className="feed-cards-title">
-              {title || "Untitled itinerary"}
-            </h2>
-
-            <h3 className="feed-cards-caption">
-              {caption || "No caption provided."}
-            </h3>
-
-            <div className="feed-cards-meta">
+          </Accordion.Header>
+          <Accordion.Body className="accordion-body">
+            <div className="feed-cards-body">
               <div className="feed-cards-meta">
-                <span className="feed-cards-chip">
-                  <img
-                    src="/likes.png"
-                    alt="thumbs up like emoji"
-                    width="16"
-                    height="16"
-                    className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
-                  />
-                  {likeCount} like{likeCount === 1 ? "" : "s"}
-                </span>
-
-                <button
-                  type="button"
-                  className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
-                  onClick={() => onLike?.(itinerary._id)}
-                  disabled={isLiking}
-                >
-                  {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
-                </button>
+                {creator && (
+                  <span className="feed-cards-chip">from @{creator}</span>
+                )}
+                {family_friendly && (
+                  <span className="feed-cards-chip feed-cards-chip-family-friendly">
+                    Family-friendly
+                  </span>
+                )}
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div className="feed-cards-body">
-        <div className="feed-cards-meta">
-          {creator && <span className="feed-cards-chip">from @{creator}</span>}
-          {family_friendly && (
-            <span className="feed-cards-chip feed-cards-chip-family-friendly">
-              Family-friendly
-            </span>
-          )}
-        </div>
+              {Array.isArray(collaborators) && collaborators.length > 0 && (
+                <p className="feed-cards-collaborators">
+                  Collaborators: {collaborators.map((u) => `@${u}`).join(", ")}
+                </p>
+              )}
 
-        {Array.isArray(collaborators) && collaborators.length > 0 && (
-          <p className="feed-cards-collaborators">
-            Collaborators: {collaborators.map((u) => `@${u}`).join(", ")}
-          </p>
-        )}
+              {tips && (
+                <p className="feed-cards-tips">
+                  <strong>Travel tips:</strong> {tips}
+                </p>
+              )}
 
-        {tips && (
-          <p className="feed-cards-tips">
-            <strong>Travel tips:</strong> {tips}
-          </p>
-        )}
-
-        {planToDays(itinerary).map((activities, dayIndex) => (
-          <section className="feed-cards-day" key={dayIndex}>
-            <h3 className="feed-cards-day-title feed-cards-day-pill">
-              Day {dayIndex + 1}
-            </h3>
-            <ul className="feed-cards-activities">
-              {activities.map((activity, activityIndex) => (
-                <li key={activityIndex}>{activity}</li>
+              {planToDays(itinerary).map((activities, dayIndex) => (
+                <section className="feed-cards-day" key={dayIndex}>
+                  <h3 className="feed-cards-day-title feed-cards-day-pill">
+                    Day {dayIndex + 1}
+                  </h3>
+                  <ul className="feed-cards-activities">
+                    {activities.map((activity, activityIndex) => (
+                      <li key={activityIndex}>{activity}</li>
+                    ))}
+                  </ul>
+                </section>
               ))}
-            </ul>
-          </section>
-        ))}
-      </div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </article>
   );
 }

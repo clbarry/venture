@@ -18,11 +18,41 @@
   overflow: hidden;
 }
 
-.feed-cards-header {
+.feed-cards-header,
+.accordion-header {
   background-color: var(--coral-red);
   color: var(--dark-color);
   padding: 1rem;
   border-bottom: 1px solid var(--background-alt);
+}
+
+.accordion-item {
+  border: 1px solid var(--coral-red);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.accordion-button {
+  background-color: var(--coral-red);
+  color: var(--dark-color);
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--coral-red);
+  color: var(--dark-color);
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.accordion-button::after {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(33%) saturate(868%)
+    hue-rotate(176deg) brightness(97%) contrast(94%);
 }
 
 .feed-cards-header-row {
