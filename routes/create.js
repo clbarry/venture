@@ -24,6 +24,7 @@ function buildItineraryPayload(body) {
     dayCount,
     familyFriendly,
     collaborators,
+    tips,
     days,
   } = body;
 
@@ -65,6 +66,7 @@ function buildItineraryPayload(body) {
       collaborators: collaboratorList,
       family_friendly: Boolean(familyFriendly),
       day_count: selectedDayCount,
+      tips: String(tips || "").trim(),
       plan,
     },
   };
@@ -72,11 +74,15 @@ function buildItineraryPayload(body) {
 
 router.get("/create/editable", isAuthenticated, async (req, res) => {
   try {
-    const itineraries = await ventureDB.getEditableItinerariesForUser(req.user.username);
+    const itineraries = await ventureDB.getEditableItinerariesForUser(
+      req.user.username,
+    );
     return res.json({ itineraries });
   } catch (error) {
     console.error("Load editable itineraries failed:", error);
-    return res.status(500).json({ error: "Could not load editable itineraries" });
+    return res
+      .status(500)
+      .json({ error: "Could not load editable itineraries" });
   }
 });
 
