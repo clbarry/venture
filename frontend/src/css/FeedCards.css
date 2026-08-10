@@ -23,7 +23,7 @@
 .accordion-header {
   background-color: var(--coral-red);
   color: var(--dark-color);
-  padding: 1rem;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--background-alt);
 }
 

@@ -69,17 +69,6 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
 
                   <div className="feed-cards-meta">
                     <div className="feed-cards-meta">
-                      {/*<span className="feed-cards-chip">
-                        <img
-                          src="/likes.png"
-                          alt="thumbs up like emoji"
-                          width="16"
-                          height="16"
-                          className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
-                        />
-                        {likeCount} like{likeCount === 1 ? "" : "s"}
-                      </span>*/}
-
                       <button
                         type="button"
                         className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
