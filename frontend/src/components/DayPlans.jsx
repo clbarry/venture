@@ -25,6 +25,21 @@ export default function DayPlans({
     );
   };
 
+  const handleMoveActivity = (index, direction) => {
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= activities.length) {
+      return;
+    }
+
+    const reorderedActivities = [...activities];
+    [reorderedActivities[index], reorderedActivities[targetIndex]] = [
+      reorderedActivities[targetIndex],
+      reorderedActivities[index],
+    ];
+
+    onActivitiesChange?.(reorderedActivities);
+  };
+
   const handleActivityKeyDown = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -73,14 +88,32 @@ export default function DayPlans({
             <ul>
               {activities.map((activity, index) => (
                 <li key={`${activity}-${index}`}>
-                  {activity}
-                  <button
-                    type="button"
-                    className="btn btn-link btn-sm"
-                    onClick={() => handleRemoveActivity(index)}
-                  >
-                    Remove
-                  </button>
+                  <span>{activity}</span>
+                  <div className="d-flex gap-2 mt-2">
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary btn-sm"
+                      onClick={() => handleMoveActivity(index, "up")}
+                      disabled={index === 0}
+                    >
+                      ↑ Up
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary btn-sm"
+                      onClick={() => handleMoveActivity(index, "down")}
+                      disabled={index === activities.length - 1}
+                    >
+                      ↓ Down
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-link btn-sm"
+                      onClick={() => handleRemoveActivity(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
