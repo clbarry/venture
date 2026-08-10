@@ -30,6 +30,7 @@ export default function CreatePage() {
     familyFriendly: false,
     collaborators: "",
     caption: "",
+    tips: "",
   });
   const [publishStatus, setPublishStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -104,6 +105,7 @@ export default function CreatePage() {
       familyFriendly: false,
       collaborators: "",
       caption: "",
+      tips: "",
     });
     setDayCount(1);
     setDayActivities([[]]);
@@ -197,6 +199,7 @@ export default function CreatePage() {
           ? itinerary.collaborators.map((name) => `@${name}`).join(", ")
           : "",
         caption: itinerary.caption || "",
+        tips: itinerary.tips || "",
       });
       setDayCount(count);
       setDayActivities(loadedDays);
@@ -248,6 +251,7 @@ export default function CreatePage() {
     }
     bodyParams.set("collaborators", formValues.collaborators);
     bodyParams.set("caption", formValues.caption);
+    bodyParams.set("tips", formValues.tips ?? "");
 
     dayActivities.forEach((activities, dayIndex) => {
       activities.forEach((activity) => {
@@ -515,6 +519,20 @@ export default function CreatePage() {
                     id="caption"
                     placeholder="Create a short caption for your itinerary"
                     value={formValues.caption}
+                    onChange={handleFormValueChange}
+                  />
+                </div>
+
+                {/* form entry - tips */}
+                {/* text entry */}
+                <div className="form-entry col-12">
+                  <label htmlFor="tips">travel tips</label>
+                  <input
+                    type="text"
+                    name="tips"
+                    id="tips"
+                    placeholder="Add any tips for this itinerary"
+                    value={formValues.tips}
                     onChange={handleFormValueChange}
                   />
                 </div>
