@@ -147,6 +147,10 @@ export default function FeedPage() {
       .filter(Boolean)
       .join(" ");
 
+    const planText = Object.values(itinerary.plan ?? {})
+      .flat()
+      .join(" ");
+
     const searchableText = [
       itinerary.title,
       itinerary.caption,
@@ -154,6 +158,7 @@ export default function FeedPage() {
       itinerary.creator,
       collaborators,
       location,
+      planText,
     ]
       .filter(Boolean)
       .join(" ")
