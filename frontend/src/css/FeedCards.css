@@ -1,13 +1,13 @@
 /* Color Palette */
 :root {
-  --dark-font:      #1b2432; /* Dark Font */
-  --dark-color:     #071425; /* Dark Blue */
-  --coral-red:      #fe5e41; /* Coral Red */
-  --orange:         #f3c178; /* Sandy Orange */
-  --sky-blue:       #92d5e6; /* Sky Blue */
-  --background:     #fdf7e7; /* Lighter Cream */
+  --dark-font: #1b2432; /* Dark Font */
+  --dark-color: #071425; /* Dark Blue */
+  --coral-red: #fe5e41; /* Coral Red */
+  --orange: #f3c178; /* Sandy Orange */
+  --sky-blue: #92d5e6; /* Sky Blue */
+  --background: #fdf7e7; /* Lighter Cream */
   --background-alt: #ead9b8; /* Light Cream */
-  --card-background:#ffffff; /* White */
+  --card-background: #ffffff; /* White */
 }
 
 .feed-cards {
@@ -35,8 +35,17 @@
 .feed-cards-heading-group {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
   min-width: 0;
+  width: 100%;
+}
+
+.feed-cards-header-top-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .feed-cards-title {
@@ -76,11 +85,13 @@
 .feed-cards-like-icon {
   margin-right: 0.35rem;
   align-self: center;
-  filter: brightness(0) saturate(100%) invert(25%) sepia(33%) saturate(861%) hue-rotate(176deg) brightness(97%) contrast(94%);
+  filter: brightness(0) saturate(100%) invert(25%) sepia(33%) saturate(861%)
+    hue-rotate(176deg) brightness(97%) contrast(94%);
 }
 
 .feed-cards-like-icon.is-liked {
-  filter: brightness(0) saturate(100%) invert(54%) sepia(95%) saturate(1738%) hue-rotate(328deg) brightness(102%) contrast(99%);
+  filter: brightness(0) saturate(100%) invert(54%) sepia(95%) saturate(1738%)
+    hue-rotate(328deg) brightness(102%) contrast(99%);
 }
 
 .feed-cards-chip-family-friendly {
@@ -103,8 +114,6 @@
   --bs-btn-hover-bg: var(--coral-red);
 }
 
-
-
 .feed-cards-liked-indicator {
   display: inline-flex;
   align-items: center;
@@ -117,8 +126,18 @@
 }
 
 .feed-cards-location-chip {
-  margin-left: auto;
+  margin-left: 0;
   align-self: flex-start;
+}
+
+.feed-cards-location,
+.feed-cards-days {
+  display: inline-flex;
+  margin-left: auto;
+}
+
+.feed-cards-days {
+  margin-left: 0.25rem;
 }
 
 .feed-cards-day-title {
@@ -143,4 +162,3 @@
   padding-left: 1.25rem;
   margin-bottom: 0.75rem;
 }
-

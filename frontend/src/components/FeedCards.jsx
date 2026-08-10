@@ -31,8 +31,26 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
       <div className="feed-cards-header">
         <div className="feed-cards-header-row">
           <div className="feed-cards-heading-group">
-            <div className="feed-cards-theme">
-              {theme && <span className="feed-cards-chip">{theme}</span>}
+            <div className="feed-cards-header-top-row">
+              <div className="feed-cards-theme">
+                {theme && <span className="feed-cards-chip">{theme}</span>}
+              </div>
+
+              <div className="feed-cards-location">
+                {location && (
+                  <span className="feed-cards-chip feed-cards-location-chip">
+                    {location}
+                  </span>
+                )}
+              </div>
+
+              <div className="feed-cards-days">
+                {dayCount > 0 && (
+                  <span className="feed-cards-chip">
+                    {dayCount} day{dayCount === 1 ? "" : "s"}
+                  </span>
+                )}
+              </div>
             </div>
 
             <h2 className="feed-cards-title">
@@ -42,19 +60,30 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
             <h3 className="feed-cards-caption">
               {caption || "No caption provided."}
             </h3>
-          </div>
 
-          {location && (
-            <span className="feed-cards-chip feed-cards-location-chip">
-              {location}
-            </span>
-          )}
-          <div className="feed-cards-meta">
-            {dayCount > 0 && (
-              <span className="feed-cards-chip">
-                {dayCount} day{dayCount === 1 ? "" : "s"}
-              </span>
-            )}
+            <div className="feed-cards-meta">
+              <div className="feed-cards-meta">
+                <span className="feed-cards-chip">
+                  <img
+                    src="/likes.png"
+                    alt="thumbs up like emoji"
+                    width="16"
+                    height="16"
+                    className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
+                  />
+                  {likeCount} like{likeCount === 1 ? "" : "s"}
+                </span>
+
+                <button
+                  type="button"
+                  className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
+                  onClick={() => onLike?.(itinerary._id)}
+                  disabled={isLiking}
+                >
+                  {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -93,30 +122,6 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
             </ul>
           </section>
         ))}
-        <div className="feed-cards-meta">
-          <span className="feed-cards-chip">
-            <img
-              src="/likes.png"
-              alt="thumbs up like emoji"
-              width="16"
-              height="16"
-              className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
-            />
-            {likeCount} like{likeCount === 1 ? "" : "s"}
-          </span>
-
-          {hasLiked && !isLiking && (
-            <span className="feed-cards-liked-indicator">You liked this</span>
-          )}
-          <button
-            type="button"
-            className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
-            onClick={() => onLike?.(itinerary._id)}
-            disabled={isLiking}
-          >
-            {isLiking ? "Updating..." : hasLiked ? "Unlike" : "Like"}
-          </button>
-        </div>
       </div>
     </article>
   );

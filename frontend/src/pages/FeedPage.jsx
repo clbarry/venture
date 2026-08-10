@@ -151,6 +151,8 @@ export default function FeedPage() {
       .flat()
       .join(" ");
 
+    const tips = Array.isArray(itinerary.tips) ? itinerary.tips.join(" ") : "";
+
     const searchableText = [
       itinerary.title,
       itinerary.caption,
@@ -159,6 +161,7 @@ export default function FeedPage() {
       collaborators,
       location,
       planText,
+      tips,
     ]
       .filter(Boolean)
       .join(" ")
@@ -255,14 +258,15 @@ export default function FeedPage() {
             )}
 
           {!loading && !error && displayedItineraries.length > 0 && (
-            <div className="feed-list">
+            <div className="row g-4 feed-list">
               {displayedItineraries.map((itinerary) => (
-                <FeedCards
-                  key={itinerary._id}
-                  itinerary={itinerary}
-                  onLike={handleLike}
-                  isLiking={Boolean(likingById[itinerary._id])}
-                />
+                <div className="col-12 col-md-6 col-xl-4" key={itinerary._id}>
+                  <FeedCards
+                    itinerary={itinerary}
+                    onLike={handleLike}
+                    isLiking={Boolean(likingById[itinerary._id])}
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -281,7 +285,7 @@ export default function FeedPage() {
                 className="btn btn-outline-primary"
                 onClick={() => setVisibleCount((prev) => prev + 25)}
               >
-                Load 25 More
+                Load More Itineraries
               </button>
             </div>
           )}
