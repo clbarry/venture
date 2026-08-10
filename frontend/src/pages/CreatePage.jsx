@@ -337,8 +337,8 @@ export default function CreatePage() {
                     Create, edit, and delete your itineraries.
                   </h3>
                   <label htmlFor="editableItinerary">
-                    To start a new itinerary, select "Create new itinerary." To
-                    edit or delete an existing one, select it from the list.
+                    Select "Create new itinerary" to start one, or select an
+                    existing itinerary to edit or delete.
                   </label>
                   <select
                     id="editableItinerary"
