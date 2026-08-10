@@ -69,7 +69,7 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
 
                   <div className="feed-cards-meta">
                     <div className="feed-cards-meta">
-                      <span className="feed-cards-chip">
+                      {/*<span className="feed-cards-chip">
                         <img
                           src="/likes.png"
                           alt="thumbs up like emoji"
@@ -78,7 +78,7 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
                           className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
                         />
                         {likeCount} like{likeCount === 1 ? "" : "s"}
-                      </span>
+                      </span>*/}
 
                       <button
                         type="button"
@@ -86,11 +86,18 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
                         onClick={() => onLike?.(itinerary._id)}
                         disabled={isLiking}
                       >
+                        <img
+                          src="/likes.png"
+                          alt="thumbs up like emoji"
+                          width="16"
+                          height="16"
+                          className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
+                        />
                         {isLiking
                           ? "Updating..."
                           : hasLiked
-                            ? "Unlike"
-                            : "Like"}
+                            ? `${likeCount - 1 === 1 ? "liked by you" : `you and ${likeCount - 1} others`}`
+                            : `${likeCount} like${likeCount === 1 ? "" : "s"}`}
                       </button>
                     </div>
                   </div>
