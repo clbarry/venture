@@ -26,6 +26,11 @@ export default function FollowModal({
       .then(setAllUsers)
       .catch(() => setAllUsers([]));
   }, [show, mode]);
+  
+    useEffect(() => {
+    setSearch("");
+  }, [show, mode]);
+
 
   const source =
     mode === "follow"

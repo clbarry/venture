@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import NavigationBar from "../components/NavigationBar.jsx";
 import "../css/ProfilePage.css";
 import FollowModal from "../components/FollowModal.jsx";
-
 function planToDays(it) {
   if (!it.plan || typeof it.plan !== "object") return [];
   return Object.values(it.plan);
@@ -109,6 +108,19 @@ export default function ProfilePage() {
                   key={it._id}
                   className={`itinerary-card itinerary-accent-${i % 3}`}
                 >
+                  <button
+                    className="itinerary-edit-btn"
+                    onClick={() =>
+                      navigate(`/create?edit=${encodeURIComponent(it._id)}`)
+                    }
+                    aria-label="Edit itinerary"
+                  >
+                    <img
+                      src="/pencil.png"
+                      alt="Edit"
+                      className="itinerary-edit-icon"
+                    />
+                  </button>
                   <h2 className="itinerary-title">{it.caption}</h2>
 
                   <div className="itinerary-meta">
