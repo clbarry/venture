@@ -570,7 +570,7 @@ export default function CreatePage() {
                   <>
                     <button
                       type="button"
-                      className="btn btn-danger"
+                      className="btn itinerary-delete-btn"
                       onClick={handleDelete}
                       disabled={isSubmitting || isLoadingEdit || isDeleting}
                     >
@@ -578,11 +578,11 @@ export default function CreatePage() {
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-secondary"
+                      className="btn itinerary-cancel-btn"
                       onClick={resetCreateForm}
                       disabled={isSubmitting || isLoadingEdit || isDeleting}
                     >
-                      Stop Editing
+                      Cancel Editing
                     </button>
                   </>
                 )}

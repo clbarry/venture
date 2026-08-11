@@ -159,19 +159,25 @@
   font-weight: 600;
 }
 
-.feed-cards-location-chip {
+.feed-cards-theme {
+  border: 1px solid var(--dark-color);
+  border-radius: 9999px;
   margin-left: 0;
   align-self: flex-start;
 }
 
-.feed-cards-location,
-.feed-cards-days {
-  display: inline-flex;
-  margin-left: auto;
+.feed-cards-location {
+  border: 1px solid var(--dark-color);
+  border-radius: 9999px;
+  margin-left: 0;
+  align-self: flex-start;
 }
 
 .feed-cards-days {
-  margin-left: 0.25rem;
+  border: 1px solid var(--dark-color);
+  border-radius: 9999px;
+  display: inline-flex;
+  margin-left: auto;
 }
 
 .feed-cards-day-title {
