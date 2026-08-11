@@ -6,6 +6,7 @@ import FeedPage from "./pages/FeedPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import CreatePage from "./pages/CreatePage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import HelpPage from "./pages/HelpPage.jsx";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -18,6 +19,7 @@ root.render(
         <Route path="/" element={<LoginPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/help" element={<HelpPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
