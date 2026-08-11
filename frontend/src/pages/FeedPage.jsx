@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
+import Pagination from "react-bootstrap/Pagination";
 import NavigationBar from "../components/NavigationBar.jsx";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import FeedCards from "../components/FeedCards.jsx";
 import "../css/FeedPage.css";
@@ -26,7 +27,8 @@ export default function FeedPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [daysFilter, setDaysFilter] = useState("all");
   const [shuffledIds, setShuffledIds] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(25);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 24;
 
   useEffect(() => {
     const loadFeed = async () => {
@@ -129,15 +131,15 @@ export default function FeedPage() {
 
   useEffect(() => {
     setShuffledIds(shuffleList(baseItineraries).map((it) => it._id));
-    setVisibleCount(25);
+    setCurrentPage(1);
   }, [feedView, currentFollowing, itineraries.length]);
 
   useEffect(() => {
-    setVisibleCount(25);
+    setCurrentPage(1);
   }, [normalizedQuery]);
 
   useEffect(() => {
-    setVisibleCount(25);
+    setCurrentPage(1);
   }, [daysFilter]);
 
   const matchesDays = (itinerary) => {
@@ -190,9 +192,17 @@ export default function FeedPage() {
     ? filteredItineraries
     : randomizedBaseItineraries.filter(matchesDays);
 
-  const displayedItineraries = sourceItineraries.slice(0, visibleCount);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(sourceItineraries.length / ITEMS_PER_PAGE),
+  );
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const displayedItineraries = sourceItineraries.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
-  const canLoadMore = displayedItineraries.length < sourceItineraries.length;
+  const canLoadMore = currentPage < totalPages;
 
   return (
     <>
@@ -323,15 +333,54 @@ export default function FeedPage() {
             </p>
           )}
 
-          {!loading && !error && canLoadMore && (
+          {!loading && !error && totalPages > 1 && (
             <div className="d-flex justify-content-center mt-3">
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => setVisibleCount((prev) => prev + 25)}
-              >
-                Load More Itineraries
-              </button>
+              <Pagination>
+                <Pagination.First onClick={() => setCurrentPage(1)} />
+                <Pagination.Prev
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(1, prev - 1))
+                  }
+                  disabled={currentPage === 1}
+                />
+                {currentPage > 3 && <Pagination.Ellipsis />}
+                {Array.from({ length: totalPages }, (_, index) => index + 1)
+                  .filter((page) => {
+                    if (page === 1 || page === totalPages) return true;
+                    if (currentPage <= 3) {
+                      return page <= 4 || page === totalPages;
+                    }
+                    if (currentPage >= totalPages - 2) {
+                      return (
+                        page >= totalPages - 3 ||
+                        page === 1 ||
+                        page === totalPages
+                      );
+                    }
+                    return Math.abs(page - currentPage) <= 1;
+                  })
+                  .map((page, index, filteredPages) => (
+                    <Fragment key={page}>
+                      {index > 0 && filteredPages[index - 1] + 1 < page && (
+                        <Pagination.Ellipsis />
+                      )}
+                      <Pagination.Item
+                        active={page === currentPage}
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </Pagination.Item>
+                    </Fragment>
+                  ))}
+                {currentPage < totalPages - 2 && <Pagination.Ellipsis />}
+                <Pagination.Next
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                  }
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last onClick={() => setCurrentPage(totalPages)} />
+              </Pagination>
             </div>
           )}
         </Container>
