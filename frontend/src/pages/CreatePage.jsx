@@ -501,7 +501,9 @@ export default function CreatePage() {
                 {/* form entry - collaborators */}
                 {/* text entry with multiple selection */}
                 <div className="form-entry col-12">
-                  <label htmlFor="collaborators">collaborators</label>
+                  <label htmlFor="collaborators">
+                    collaborators (can edit, but not delete the itinerary)
+                  </label>
                   <input
                     type="text"
                     name="collaborators"
@@ -573,19 +575,20 @@ export default function CreatePage() {
                   <>
                     <button
                       type="button"
-                      className="btn itinerary-delete-btn"
-                      onClick={handleDelete}
-                      disabled={isSubmitting || isLoadingEdit || isDeleting}
-                    >
-                      {isDeleting ? "Deleting..." : "Delete Itinerary"}
-                    </button>
-                    <button
-                      type="button"
                       className="btn itinerary-cancel-btn"
                       onClick={resetCreateForm}
                       disabled={isSubmitting || isLoadingEdit || isDeleting}
                     >
                       Cancel Editing
+                    </button>
+
+                    <button
+                      type="button"
+                      className="btn itinerary-delete-btn"
+                      onClick={handleDelete}
+                      disabled={isSubmitting || isLoadingEdit || isDeleting}
+                    >
+                      {isDeleting ? "Deleting..." : "Delete Itinerary"}
                     </button>
                   </>
                 )}
