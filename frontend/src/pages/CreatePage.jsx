@@ -365,10 +365,13 @@ export default function CreatePage() {
               <br />
               {/* form card */}
               <div className="create-form-card row g-3">
+                <p className="form-entry-required-notation">
+                  Fields marked with * are required.
+                </p>
                 {/* form entry - itinerary title */}
                 {/* text input */}
                 <div className=" form-entry col-12">
-                  <label htmlFor="itineraryTitle">title</label>
+                  <label htmlFor="itineraryTitle">title*</label>
                   <input
                     type="text"
                     name="title"
@@ -383,7 +386,7 @@ export default function CreatePage() {
                 {/* form entry - itinerary theme */}
                 {/* text input */}
                 <div className="form-entry col-md-6">
-                  <label htmlFor="theme">theme</label>
+                  <label htmlFor="theme">theme*</label>
                   <input
                     type="text"
                     name="theme"
@@ -397,7 +400,7 @@ export default function CreatePage() {
                 {/* form entry - itinerary fitness level */}
                 {/* drop down */}
                 <div className="form-entry col-md-6">
-                  <label htmlFor="fitnessLevel">fitness level</label>
+                  <label htmlFor="fitnessLevel">fitness level*</label>
                   <select
                     name="fitnessLevel"
                     id="fitnessLevel"
@@ -435,7 +438,7 @@ export default function CreatePage() {
                 {/* form entry - itinerary country */}
                 {/* text area */}
                 <div className="form-entry col-md-6">
-                  <label htmlFor="country">country</label>
+                  <label htmlFor="country">country*</label>
                   <textarea
                     name="country"
                     id="country"
@@ -447,7 +450,7 @@ export default function CreatePage() {
 
                 {/* form entry - city/region */}
                 <div className="form-entry col-md-6">
-                  <label htmlFor="cityRegion">city/region</label>
+                  <label htmlFor="cityRegion">city/region*</label>
                   <textarea
                     name="cityRegion"
                     id="cityRegion"
@@ -460,7 +463,7 @@ export default function CreatePage() {
                 {/* form entry - itinerary duration */}
                 {/* slider */}
                 <div className="form-entry col-md-6">
-                  <label htmlFor="days">number of days</label>
+                  <label htmlFor="days">number of days*</label>
                   <input
                     type="range"
                     name="dayCount"
