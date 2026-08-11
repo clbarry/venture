@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Pagination from "react-bootstrap/Pagination";
 import NavigationBar from "../components/NavigationBar.jsx";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import FeedCards from "../components/FeedCards.jsx";
 import "../css/FeedPage.css";
