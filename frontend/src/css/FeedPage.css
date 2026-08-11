@@ -143,3 +143,43 @@
   flex: 1;
   margin: 0;
 }
+
+.feed-page-pagination {
+  margin-top: 1.5rem;
+}
+
+.feed-page-pagination .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.feed-page-pagination .page-item .page-link {
+  border: 1px solid var(--background-alt);
+  border-radius: 9999px;
+  color: var(--dark-font);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.feed-page-pagination .page-item .page-link:hover {
+  background: var(--background-alt);
+  color: var(--dark-color);
+  border-color: var(--coral-red);
+}
+
+.feed-page-pagination .page-item.active .page-link {
+  background: var(--coral-red);
+  border-color: var(--coral-red);
+  color: var(--dark-color);
+}
+
+.feed-page-pagination .page-item.disabled .page-link {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

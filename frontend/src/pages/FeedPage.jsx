@@ -6,15 +6,6 @@ import { useNavigate } from "react-router";
 import FeedCards from "../components/FeedCards.jsx";
 import "../css/FeedPage.css";
 
-function shuffleList(items) {
-  const next = [...items];
-  for (let i = next.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [next[i], next[j]] = [next[j], next[i]];
-  }
-  return next;
-}
-
 export default function FeedPage() {
   const navigate = useNavigate();
   const [itineraries, setItineraries] = useState([]);
@@ -26,7 +17,6 @@ export default function FeedPage() {
   const [feedView, setFeedView] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [daysFilter, setDaysFilter] = useState("all");
-  const [shuffledIds, setShuffledIds] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 24;
 
@@ -130,7 +120,6 @@ export default function FeedPage() {
     : baseItineraries;
 
   useEffect(() => {
-    setShuffledIds(shuffleList(baseItineraries).map((it) => it._id));
     setCurrentPage(1);
   }, [feedView, currentFollowing, itineraries.length]);
 
@@ -184,13 +173,9 @@ export default function FeedPage() {
     return searchableText.includes(normalizedQuery);
   });
 
-  const randomizedBaseItineraries = shuffledIds
-    .map((id) => baseItineraries.find((it) => it._id === id))
-    .filter(Boolean);
-
   const sourceItineraries = normalizedQuery
     ? filteredItineraries
-    : randomizedBaseItineraries.filter(matchesDays);
+    : baseItineraries.filter(matchesDays);
 
   const totalPages = Math.max(
     1,
@@ -203,6 +188,38 @@ export default function FeedPage() {
   );
 
   const canLoadMore = currentPage < totalPages;
+
+  const paginationItems = (() => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, index) => index + 1);
+    }
+
+    if (currentPage <= 4) {
+      return [1, 2, 3, 4, 5, "ellipsis", totalPages];
+    }
+
+    if (currentPage >= totalPages - 3) {
+      return [
+        1,
+        "ellipsis",
+        totalPages - 4,
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ];
+    }
+
+    return [
+      1,
+      "ellipsis",
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      "ellipsis",
+      totalPages,
+    ];
+  })();
 
   return (
     <>
@@ -333,56 +350,41 @@ export default function FeedPage() {
             </p>
           )}
 
-          {!loading && !error && totalPages > 1 && (
-            <div className="d-flex justify-content-center mt-3">
-              <Pagination>
-                <Pagination.First onClick={() => setCurrentPage(1)} />
-                <Pagination.Prev
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(1, prev - 1))
-                  }
-                  disabled={currentPage === 1}
-                />
-                {currentPage > 3 && <Pagination.Ellipsis />}
-                {Array.from({ length: totalPages }, (_, index) => index + 1)
-                  .filter((page) => {
-                    if (page === 1 || page === totalPages) return true;
-                    if (currentPage <= 3) {
-                      return page <= 4 || page === totalPages;
+          <div className="feed-page-pagination">
+            {!loading && !error && totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-3">
+                <Pagination>
+                  <Pagination.First onClick={() => setCurrentPage(1)} />
+                  <Pagination.Prev
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(1, prev - 1))
                     }
-                    if (currentPage >= totalPages - 2) {
-                      return (
-                        page >= totalPages - 3 ||
-                        page === 1 ||
-                        page === totalPages
-                      );
-                    }
-                    return Math.abs(page - currentPage) <= 1;
-                  })
-                  .map((page, index, filteredPages) => (
-                    <Fragment key={page}>
-                      {index > 0 && filteredPages[index - 1] + 1 < page && (
-                        <Pagination.Ellipsis />
-                      )}
+                    disabled={currentPage === 1}
+                  />
+                  {paginationItems.map((page, index) =>
+                    page === "ellipsis" ? (
+                      <Pagination.Ellipsis key={`ellipsis-${index}`} />
+                    ) : (
                       <Pagination.Item
+                        key={page}
                         active={page === currentPage}
                         onClick={() => setCurrentPage(page)}
                       >
                         {page}
                       </Pagination.Item>
-                    </Fragment>
-                  ))}
-                {currentPage < totalPages - 2 && <Pagination.Ellipsis />}
-                <Pagination.Next
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-                  }
-                  disabled={currentPage === totalPages}
-                />
-                <Pagination.Last onClick={() => setCurrentPage(totalPages)} />
-              </Pagination>
-            </div>
-          )}
+                    ),
+                  )}
+                  <Pagination.Next
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                  />
+                  <Pagination.Last onClick={() => setCurrentPage(totalPages)} />
+                </Pagination>
+              </div>
+            )}
+          </div>
         </Container>
       </div>
     </>
