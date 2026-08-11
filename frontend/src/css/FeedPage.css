@@ -99,6 +99,31 @@
   margin-top: 2.5rem;
 }
 
+.feed-page-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.feed-expand-all-btn {
+  border: 1px solid var(--background-alt);
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--dark-font);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.feed-expand-all-btn:hover {
+  background: var(--background-alt);
+  border-color: var(--coral-red);
+}
+
 .feed-search-input {
   width: 100%;
   max-width: 620px;

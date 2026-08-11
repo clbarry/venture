@@ -18,6 +18,7 @@ export default function FeedPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [daysFilter, setDaysFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [expandedCardIds, setExpandedCardIds] = useState([]);
   const ITEMS_PER_PAGE = 24;
 
   useEffect(() => {
@@ -186,6 +187,27 @@ export default function FeedPage() {
     startIndex,
     startIndex + ITEMS_PER_PAGE,
   );
+  const isAllExpanded =
+    displayedItineraries.length > 0 &&
+    displayedItineraries.every((itinerary) =>
+      expandedCardIds.includes(itinerary._id),
+    );
+
+  const handleToggleCard = (itineraryId) => {
+    setExpandedCardIds((prev) =>
+      prev.includes(itineraryId)
+        ? prev.filter((id) => id !== itineraryId)
+        : [...prev, itineraryId],
+    );
+  };
+
+  const handleExpandAll = () => {
+    setExpandedCardIds(displayedItineraries.map((itinerary) => itinerary._id));
+  };
+
+  const handleCollapseAll = () => {
+    setExpandedCardIds([]);
+  };
 
   const canLoadMore = currentPage < totalPages;
 
@@ -303,10 +325,21 @@ export default function FeedPage() {
               </div>
             </div>
           )}
-          <div>
+          <div className="feed-page-actions">
             <p className="feed-card-instructions">
               Click on an itinerary card to view more details.
             </p>
+            {!loading && !error && displayedItineraries.length > 0 && (
+              <button
+                type="button"
+                className="feed-expand-all-btn"
+                onClick={isAllExpanded ? handleCollapseAll : handleExpandAll}
+              >
+                {isAllExpanded
+                  ? "Collapse All Itineraries"
+                  : "Expand All Itineraries"}
+              </button>
+            )}
           </div>
 
           {loading && <p>Loading itineraries...</p>}
@@ -337,6 +370,8 @@ export default function FeedPage() {
                     itinerary={itinerary}
                     onLike={handleLike}
                     isLiking={Boolean(likingById[itinerary._id])}
+                    isExpanded={expandedCardIds.includes(itinerary._id)}
+                    onToggle={handleToggleCard}
                   />
                 </div>
               ))}

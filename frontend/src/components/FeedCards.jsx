@@ -7,7 +7,13 @@ function planToDays(itinerary) {
   return Object.values(itinerary.plan);
 }
 
-export default function FeedCards({ itinerary, onLike, isLiking = false }) {
+export default function FeedCards({
+  itinerary,
+  onLike,
+  isLiking = false,
+  isExpanded = false,
+  onToggle,
+}) {
   const {
     caption,
     title,
@@ -29,7 +35,10 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
 
   return (
     <article className="feed-cards mb-3">
-      <Accordion defaultActiveKey={null}>
+      <Accordion
+        activeKey={isExpanded ? "0" : null}
+        onSelect={() => onToggle?.(itinerary._id)}
+      >
         <Accordion.Item eventKey="0" flush={true} collapse="true">
           <Accordion.Header className="accordion accordion-header">
             <div className="feed-cards-header">
@@ -163,4 +172,6 @@ FeedCards.propTypes = {
   }).isRequired,
   onLike: PropTypes.func,
   isLiking: PropTypes.bool,
+  isExpanded: PropTypes.bool,
+  onToggle: PropTypes.func,
 };
