@@ -58,6 +58,15 @@ export default function NavigationBar() {
               Profile
             </Nav.Link>
 
+            <Nav.Link as={NavLink} to="/help" className="venture-nav-link">
+              <img
+                src="/help.png"
+                alt="An info icon for the help page"
+                className="venture-nav-icon"
+              />
+              Help
+            </Nav.Link>
+
             <Nav.Link
               as="button"
               type="button"
