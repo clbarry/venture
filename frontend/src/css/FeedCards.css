@@ -2,7 +2,7 @@
 :root {
   --dark-font: #1b2432; /* Dark Font */
   --dark-color: #071425; /* Dark Blue */
-  --coral-red: #fb7a64; /* Coral Red */
+  --coral-red: #ec7a52; /* Coral Red */
   --alt-coral-red: #fe5e41; /* Coral Red */
   --orange: #f3c178; /* Sandy Orange */
   --sky-blue: #92d5e6; /* Sky Blue */
@@ -17,6 +17,7 @@
   background-color: var(--card-background);
   box-shadow: 0 8px 20px rgba(7, 20, 37, 0.12);
   overflow: hidden;
+  margin-top: 0rem;
 }
 
 .feed-cards-header,
@@ -136,7 +137,7 @@
 .feed-cards-like-btn {
   --bs-btn-color: var(--dark-color);
   --bs-btn-bg: var(--background);
-  --bs-btn-border-color: var(--dark-color);
+  --bs-btn-border-color: var(--background-alt);
   --bs-btn-hover-color: var(--dark-color);
   --bs-btn-hover-bg: var(--sky-blue);
   --bs-btn-hover-border-color: var(--dark-color);
@@ -160,21 +161,21 @@
 }
 
 .feed-cards-theme {
-  border: 1px solid var(--dark-color);
+  border: 1px solid var(--background-alt);
   border-radius: 9999px;
   margin-left: 0;
   align-self: flex-start;
 }
 
 .feed-cards-location {
-  border: 1px solid var(--dark-color);
+  border: 1px solid var(--background-alt);
   border-radius: 9999px;
   margin-left: 0;
   align-self: flex-start;
 }
 
 .feed-cards-days {
-  border: 1px solid var(--dark-color);
+  border: 1px solid var(--background-alt);
   border-radius: 9999px;
   display: inline-flex;
   margin-left: auto;

@@ -44,9 +44,7 @@ export default function FeedCards({ itinerary, onLike, isLiking = false }) {
 
                     <div className="feed-cards-location">
                       {location && (
-                        <span className="feed-cards-chip feed-cards-location-chip">
-                          {location}
-                        </span>
+                        <span className="feed-cards-chip">{location}</span>
                       )}
                     </div>
 
