@@ -37,6 +37,11 @@ export default function CreatePage() {
   const [isLoadingEdit, setIsLoadingEdit] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // collaborators validation
+  const [allUsernames, setAllUsernames] = useState([]);
+  const [collaboratorList, setCollaboratorList] = useState([]);
+  const [collabInput, setCollabInput] = useState("");
+
   useEffect(() => {
     const init = async () => {
       try {
@@ -44,6 +49,10 @@ export default function CreatePage() {
         if (!authRes.ok) {
           navigate("/");
           return;
+        }
+        const usersRes = await fetch("/api/profile/users");
+        if (usersRes.ok) {
+          setAllUsernames(await usersRes.json());
         }
 
         const editableRes = await fetch("/create/editable", {
@@ -103,12 +112,13 @@ export default function CreatePage() {
       country: "",
       cityRegion: "",
       familyFriendly: false,
-      collaborators: "",
       caption: "",
       tips: "",
     });
     setDayCount(1);
     setDayActivities([[]]);
+    setCollaboratorList([]);
+    setCollabInput("");
   };
 
   const handleDelete = async () => {
@@ -195,14 +205,14 @@ export default function CreatePage() {
         country: itinerary.country || "",
         cityRegion: itinerary.city || itinerary.cityRegion || "",
         familyFriendly: Boolean(itinerary.family_friendly),
-        collaborators: Array.isArray(itinerary.collaborators)
-          ? itinerary.collaborators.map((name) => `@${name}`).join(", ")
-          : "",
         caption: itinerary.caption || "",
         tips: itinerary.tips || "",
       });
       setDayCount(count);
       setDayActivities(loadedDays);
+      setCollaboratorList(
+        Array.isArray(itinerary.collaborators) ? itinerary.collaborators : [],
+      );
       window.history.replaceState(
         {},
         "",
@@ -249,7 +259,10 @@ export default function CreatePage() {
     if (formValues.familyFriendly) {
       bodyParams.set("familyFriendly", "yes");
     }
-    bodyParams.set("collaborators", formValues.collaborators);
+    bodyParams.set(
+      "collaborators",
+      collaboratorList.map((u) => `@${u}`).join(", "),
+    );
     bodyParams.set("caption", formValues.caption);
     bodyParams.set("tips", formValues.tips ?? "");
 
@@ -313,6 +326,40 @@ export default function CreatePage() {
     }
   };
 
+
+  const normalizedCollabInput = collabInput
+    .trim()
+    .replace(/^@+/, "")
+    .toLowerCase();
+
+  const collaboratorSuggestions =
+    normalizedCollabInput.length === 0
+      ? []
+      : allUsernames.filter((name) => {
+          const lower = name.toLowerCase();
+          return (
+            lower.includes(normalizedCollabInput) &&
+            !collaboratorList.some((c) => c.toLowerCase() === lower)
+          );
+        });
+
+  const addCollaborator = (username) => {
+    const clean = username.replace(/^@+/, "");
+    const match = allUsernames.find(
+      (n) => n.toLowerCase() === clean.toLowerCase(),
+    );
+    if (!match) return;
+    if (collaboratorList.some((c) => c.toLowerCase() === match.toLowerCase()))
+      return;
+    setCollaboratorList((prev) => [...prev, match]);
+    setCollabInput("");
+  };
+
+  const removeCollaborator = (username) => {
+    setCollaboratorList((prev) =>
+      prev.filter((c) => c.toLowerCase() !== username.toLowerCase()),
+    );
+  };
   return (
     <>
       {/* Navigation */}
@@ -504,14 +551,67 @@ export default function CreatePage() {
                   <label htmlFor="collaborators">
                     collaborators (can edit, but not delete the itinerary)
                   </label>
-                  <input
-                    type="text"
-                    name="collaborators"
-                    id="collaborators"
-                    placeholder="@friend1, @friend2, @friend3..."
-                    value={formValues.collaborators}
-                    onChange={handleFormValueChange}
-                  />
+
+                  <div className="collab-field">
+                    {collaboratorList.map((username) => (
+                      <span className="collab-pill" key={username}>
+                        @{username}
+                        <button
+                          type="button"
+                          className="collab-pill-remove"
+                          onClick={() => removeCollaborator(username)}
+                          aria-label={`Remove ${username}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                    <input
+                      type="text"
+                      id="collaborators"
+                      className="collab-input"
+                      placeholder={
+                        collaboratorList.length
+                          ? ""
+                          : "@friend1, @friend2, @friend3..."
+                      }
+                      value={collabInput}
+                      onChange={(e) => setCollabInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          if (collaboratorSuggestions.length > 0) {
+                            addCollaborator(collaboratorSuggestions[0]);
+                          }
+                        } else if (
+                          e.key === "Backspace" &&
+                          collabInput === "" &&
+                          collaboratorList.length > 0
+                        ) {
+                          removeCollaborator(
+                            collaboratorList[collaboratorList.length - 1],
+                          );
+                        }
+                      }}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {collaboratorSuggestions.length > 0 && (
+                    <ul className="collab-suggestions">
+                      {collaboratorSuggestions.slice(0, 6).map((username) => (
+                        <li key={username}>
+                          <button
+                            type="button"
+                            className="collab-suggestion-btn"
+                            onClick={() => addCollaborator(username)}
+                          >
+                            @{username}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 {/* form entry - caption */}
