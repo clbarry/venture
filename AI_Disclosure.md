@@ -38,3 +38,22 @@ This project used AI assistance (Claude, Anthropic and CoPilot) during developme
 | 12 | Edit permissions | I would like to allow users to edit itineraries they own or collaborate with other on, likely loading them in the create page, similar to the way I did for the prompt moderator page | Used to implement edit access for owners/collaborators via the create page |
 | 13 | UI consolidation | I want it to be more simple to keep the edit and delete on the create page only, remove the delete and edit buttons from the feed cards and keep it more simple only in that page | Used to simplify the feed UI and centralize edit/delete actions on the create page |
 | 14 | AI Disclosure | Using the following as a format creat an AI discolsure log using the following format this is a record of the prompts I used [pasted prompts and purpose] | Used to format the AI disclosure for .md file |
+
+## AI Disclosure Log (Full Chat Summary)
+
+This section summarizes the AI-assisted work completed across the full chat session for the travel itinerary app.
+
+| # | Purpose | Prompt | How Output Was Used |
+|---|---------|--------|----------------------|
+| 15 | Fix create-page fetch issue | "make it work" / "fix the create-page fetch error" | Helped diagnose and correct the create-page request flow so itinerary data could be submitted and edited successfully. |
+| 16 | Add itinerary editing behavior | "add itinerary activity reordering" | Guided the implementation of activity reordering in the create/edit flow for trip days. |
+| 17 | Extend create form | "add travel tips to the create form" | Added travel tips to the form state, submission payload, backend handling, and UI rendering. |
+| 18 | Improve feed experience | "improve the feed UI" | Helped refine the feed card layout, spacing, chips, and overall presentation. |
+| 19 | Simplify social interaction UI | "make the like control a single toggle button" | Updated the like interaction to use a single button with clear liked/not-liked state. |
+| 20 | Collapse accordions by default | "make the accordion collapsed by default" | Adjusted the feed itinerary accordion behavior so cards begin collapsed until expanded by the user. |
+| 21 | Add paginated browsing | "implement client-side pagination for the feed" | Added page-based pagination for the feed so itineraries are displayed in manageable chunks. |
+| 22 | Fix pagination edge case | "It is still showing the trailing elipsis" | Corrected the pager logic so the trailing ellipsis no longer appeared after the last page. |
+| 23 | Style pagination controls | "how do i change the element pagination styling" | Updated the CSS selectors and styles for the Bootstrap pagination component used on the feed page. |
+| 24 | Expand all accordions | "is there an easy way to add a button that expands all accordians on the page for the feed page" | Added an Expand all / Collapse all control and shared accordion state for the visible feed cards. |
+| 25 | Explain React spread syntax | "You use `...` when you want to copy or expand an array or object instead of changing it in place..." | Used to explain immutable state updates and the purpose of spreading arrays/objects in React. |
+| 26 | Generate disclosure summary | "make an AI disclosure for the entire chat" | Used to draft this full-session disclosure summary for the project documentation. |

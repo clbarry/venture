@@ -1,9 +1,15 @@
 /* Color Palette */
+
 :root {
+  --linear-gradient-warm: linear-gradient(
+    135deg,
+    #aecbc9 0%,
+    #e3c98b 45%,
+    #ec8a5c 100%
+  );
   --dark-font: #1b2432; /* Dark Font */
   --dark-color: #071425; /* Dark Blue */
-  --coral-red: #ec7a52; /* Coral Red */
-  --alt-coral-red: #fe5e41; /* Coral Red */
+  --coral-red: #fe5e41; /* Coral Red */
   --orange: #f3c178; /* Sandy Orange */
   --sky-blue: #92d5e6; /* Sky Blue */
   --background: #fdf7e7; /* Lighter Cream */
@@ -207,7 +213,7 @@
 .feed-cards-collaborators {
   font-size: 0.875rem;
   margin-top: 0.5rem;
-  border: 1px solid var(--alt-coral-red);
+  border: 1px solid var(--coral-red);
   border-radius: 10px;
   padding: 0.2rem 0.6rem;
 }
