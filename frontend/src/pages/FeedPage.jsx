@@ -24,9 +24,8 @@ export default function FeedPage() {
   const [currentFollowing, setCurrentFollowing] = useState([]);
   const [feedView, setFeedView] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [randomizedBaseItineraries, setRandomizedBaseItineraries] = useState(
-    [],
-  );
+  const [daysFilter, setDaysFilter] = useState("all");
+  const [shuffledIds, setShuffledIds] = useState([]);
   const [visibleCount, setVisibleCount] = useState(25);
 
   useEffect(() => {
@@ -129,17 +128,30 @@ export default function FeedPage() {
     : baseItineraries;
 
   useEffect(() => {
-    setRandomizedBaseItineraries(shuffleList(baseItineraries));
+    setShuffledIds(shuffleList(baseItineraries).map((it) => it._id));
     setVisibleCount(25);
-  }, [feedView, itineraries, currentFollowing]);
+  }, [feedView, currentFollowing, itineraries.length]);
 
   useEffect(() => {
     setVisibleCount(25);
   }, [normalizedQuery]);
 
-  const filteredItineraries = searchSourceItineraries.filter((itinerary) => {
-    if (!normalizedQuery) return true;
+  useEffect(() => {
+    setVisibleCount(25);
+  }, [daysFilter]);
 
+  const matchesDays = (itinerary) => {
+    if (daysFilter === "all") return true;
+    const days =
+      Number(itinerary.num_days) ||
+      Number(itinerary.day_count) ||
+      Object.keys(itinerary.plan ?? {}).length;
+    return days === Number(daysFilter);
+  };
+
+  const filteredItineraries = searchSourceItineraries.filter((itinerary) => {
+    if (!matchesDays(itinerary)) return false;
+    if (!normalizedQuery) return true;
     const collaborators = Array.isArray(itinerary.collaborators)
       ? itinerary.collaborators.join(" ")
       : "";
@@ -170,9 +182,13 @@ export default function FeedPage() {
     return searchableText.includes(normalizedQuery);
   });
 
+  const randomizedBaseItineraries = shuffledIds
+    .map((id) => baseItineraries.find((it) => it._id === id))
+    .filter(Boolean);
+
   const sourceItineraries = normalizedQuery
     ? filteredItineraries
-    : randomizedBaseItineraries;
+    : randomizedBaseItineraries.filter(matchesDays);
 
   const displayedItineraries = sourceItineraries.slice(0, visibleCount);
 
@@ -222,18 +238,42 @@ export default function FeedPage() {
           )}
 
           {!loading && !error && currentUsername && (
-            <div className="feed-search-wrap">
-              <label className="feed-search-label" htmlFor="feed-search-input">
-                Search itineraries
-              </label>
-              <input
-                id="feed-search-input"
-                type="search"
-                className="feed-search-input"
-                placeholder="Search by title, caption, theme, location, or username"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-              />
+            <div className="feed-filters-row">
+              <div className="feed-search-wrap">
+                <label
+                  className="feed-search-label"
+                  htmlFor="feed-search-input"
+                >
+                  Search itineraries
+                </label>
+                <input
+                  id="feed-search-input"
+                  type="search"
+                  className="feed-search-input"
+                  placeholder="Search by title, caption, theme, location, or username"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                />
+              </div>
+
+              <div className="feed-days-wrap">
+                <label className="feed-search-label" htmlFor="feed-days-select">
+                  Days
+                </label>
+                <select
+                  id="feed-days-select"
+                  className="feed-days-select"
+                  value={daysFilter}
+                  onChange={(event) => setDaysFilter(event.target.value)}
+                >
+                  <option value="all">All</option>
+                  {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                    <option key={n} value={n}>
+                      {n} {n === 1 ? "day" : "days"}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           )}
           <div>

@@ -119,3 +119,27 @@
   border-color: var(--coral-red);
   box-shadow: 0 0 0 3px rgba(254, 94, 65, 0.2);
 }
+
+.feed-filters-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.feed-days-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-days-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d8cbb8;
+  background: #fff;
+}
+
+.feed-filters-row .feed-search-wrap {
+  flex: 1;
+  margin: 0;
+}
