@@ -91,7 +91,12 @@ export default function ProfilePage() {
               <strong>{profile.following.length}</strong> following
             </button>
             <Button size="sm" onClick={() => setModalMode("follow")}>
-              +
+              <img
+                src="/follow-search.png"
+                alt="Search followers"
+                className="follow-magnifying-glass"
+              />
+              Follow
             </Button>
           </div>
         </Container>
