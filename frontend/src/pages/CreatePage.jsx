@@ -2,7 +2,7 @@
 /* Resource, React Bootstrap :https://react-bootstrap.netlify.app/docs/forms/overview */
 
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 /* Import React components */
 import { useEffect, useState } from "react";
@@ -36,7 +36,10 @@ export default function CreatePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingEdit, setIsLoadingEdit] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  const [successModal, setSuccessModal] = useState({
+    show: false,
+    message: "",
+  });
   // collaborators validation
   const [allUsernames, setAllUsernames] = useState([]);
   const [collaboratorList, setCollaboratorList] = useState([]);
@@ -75,6 +78,11 @@ export default function CreatePage() {
 
     init();
   }, [navigate, initialEditId]);
+
+  const handleSuccessModalClose = () => {
+    setSuccessModal({ show: false, message: "" });
+    navigate("/profile");
+  };
 
   const handleDayCountChange = (event) => {
     const nextCount = Number(event.target.value);
@@ -146,20 +154,10 @@ export default function CreatePage() {
         return;
       }
 
-      setPublishStatus({
-        type: "success",
+      setSuccessModal({
+        show: true,
         message: "Itinerary deleted successfully.",
       });
-
-      resetCreateForm();
-
-      const editableRes = await fetch("/create/editable", {
-        headers: { Accept: "application/json" },
-      });
-      if (editableRes.ok) {
-        const data = await editableRes.json();
-        setEditableItineraries(data.itineraries ?? []);
-      }
     } catch {
       setPublishStatus({
         type: "error",
@@ -299,15 +297,12 @@ export default function CreatePage() {
         return;
       }
 
-      setPublishStatus({
-        type: "success",
+      setSuccessModal({
+        show: true,
         message: selectedItineraryId
           ? "Itinerary updated successfully."
           : "Itinerary saved successfully.",
       });
-      if (!selectedItineraryId) {
-        resetCreateForm();
-      }
 
       const editableRes = await fetch("/create/editable", {
         headers: { Accept: "application/json" },
@@ -325,7 +320,6 @@ export default function CreatePage() {
       setIsSubmitting(false);
     }
   };
-
 
   const normalizedCollabInput = collabInput
     .trim()
@@ -705,6 +699,17 @@ export default function CreatePage() {
             </form>{" "}
             {/* form end */}
           </div>
+          <Modal
+            show={successModal.show}
+            onHide={handleSuccessModalClose}
+            centered
+            className="create-success-modal"
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Success</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{successModal.message}</Modal.Body>
+          </Modal>
         </Container>
       </main>{" "}
       {/* close create-page-body */}
