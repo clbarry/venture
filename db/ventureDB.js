@@ -109,7 +109,8 @@ function VentureDB() {
       const collaborators = Array.isArray(existing.collaborators)
         ? existing.collaborators
         : [];
-      const canEdit = existing.creator === username || collaborators.includes(username);
+      const canEdit =
+        existing.creator === username || collaborators.includes(username);
       if (!canEdit) {
         return { updated: false, reason: "forbidden" };
       }
