@@ -236,6 +236,11 @@ export default function FeedPage() {
               />
             </div>
           )}
+          <div>
+            <p className="feed-card-instructions">
+              Click on an itinerary card to view more details.
+            </p>
+          </div>
 
           {loading && <p>Loading itineraries...</p>}
           {!loading && error && <p>{error}</p>}
