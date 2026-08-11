@@ -7,7 +7,10 @@ const router = express.Router();
 router.get("/", isAuthenticated, async (req, res) => {
   try {
     const itineraries = await ventureDB.getItineraries({
-      creator: req.user.username,
+      $or: [
+        { creator: req.user.username },
+        { collaborators: req.user.username },
+      ],
     });
     res.json({
       username: req.user.username,
@@ -22,27 +25,33 @@ router.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
-router.delete("/itineraries/:itineraryId", isAuthenticated, async (req, res) => {
-  try {
-    const result = await ventureDB.deleteItineraryByCreator(
-      req.params.itineraryId,
-      req.user.username,
-    );
+router.delete(
+  "/itineraries/:itineraryId",
+  isAuthenticated,
+  async (req, res) => {
+    try {
+      const result = await ventureDB.deleteItineraryByCreator(
+        req.params.itineraryId,
+        req.user.username,
+      );
 
-    if (result.reason === "not found") {
-      return res.status(404).json({ message: "Itinerary not found" });
+      if (result.reason === "not found") {
+        return res.status(404).json({ message: "Itinerary not found" });
+      }
+
+      if (result.reason === "forbidden") {
+        return res
+          .status(403)
+          .json({ message: "You can only delete your own itineraries" });
+      }
+
+      return res.json({ message: "Itinerary deleted" });
+    } catch (err) {
+      console.error("Delete itinerary failed:", err);
+      return res.status(500).json({ message: "Failed to delete itinerary" });
     }
-
-    if (result.reason === "forbidden") {
-      return res.status(403).json({ message: "You can only delete your own itineraries" });
-    }
-
-    return res.json({ message: "Itinerary deleted" });
-  } catch (err) {
-    console.error("Delete itinerary failed:", err);
-    return res.status(500).json({ message: "Failed to delete itinerary" });
-  }
-});
+  },
+);
 
 router.delete("/", isAuthenticated, async (req, res) => {
   try {
@@ -52,7 +61,10 @@ router.delete("/", isAuthenticated, async (req, res) => {
     await ventureDB.deleteUser(_id);
 
     req.logout((err) => {
-      if (err) return res.status(500).json({ message: "Account deleted, logout failed" });
+      if (err)
+        return res
+          .status(500)
+          .json({ message: "Account deleted, logout failed" });
       req.session.destroy(() => {
         res.json({ message: "Account deleted" });
       });
