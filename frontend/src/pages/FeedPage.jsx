@@ -299,7 +299,7 @@ export default function FeedPage() {
                   id="feed-search-input"
                   type="search"
                   className="feed-search-input"
-                  placeholder="Search by title, caption, theme, location, or username"
+                  placeholder="Search by title, caption, theme, location, username, activities, or travel tips"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                 />
