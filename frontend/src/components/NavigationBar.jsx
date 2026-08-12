@@ -29,9 +29,6 @@ export default function NavigationBar() {
 
   return (
     <>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
 
       <Navbar
         expand="lg"
