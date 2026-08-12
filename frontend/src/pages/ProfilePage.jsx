@@ -16,6 +16,8 @@ export default function ProfilePage() {
   const [modalMode, setModalMode] = useState(null);
 
   const [deleting, setDeleting] = useState(false);
+  const openModal = (mode) => () => setModalMode(mode);
+  const closeModal = () => setModalMode(null);
 
   const onDeleteAccount = async () => {
     const confirmed = window.confirm(
@@ -80,17 +82,19 @@ export default function ProfilePage() {
             </span>
             <button
               className="profile-stat profile-stat-btn"
-              onClick={() => setModalMode("followers")}
+              aria-haspopup="dialog"
+              onClick={openModal("followers")}
             >
               <strong>{profile.followers.length}</strong> followers
             </button>
             <button
               className="profile-stat profile-stat-btn"
-              onClick={() => setModalMode("following")}
+              aria-haspopup="dialog"
+              onClick={openModal("following")}
             >
               <strong>{profile.following.length}</strong> following
             </button>
-            <Button size="sm" onClick={() => setModalMode("follow")}>
+            <Button size="sm" aria-haspopup="dialog" onClick={openModal("follow")}>
               <img
                 src="/follow-search.png"
                 alt="Search followers"
@@ -170,7 +174,7 @@ export default function ProfilePage() {
         </Container>
         <FollowModal
           show={modalMode !== null}
-          onHide={() => setModalMode(null)}
+          onHide={closeModal}
           mode={modalMode ?? "follow"}
           following={profile.following}
           followers={profile.followers}

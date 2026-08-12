@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -18,6 +18,7 @@ export default function FollowModal({
   const [allUsers, setAllUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [busy, setBusy] = useState(null); // username currently being (un)followed
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (!show || mode !== "follow") return;
@@ -26,11 +27,16 @@ export default function FollowModal({
       .then(setAllUsers)
       .catch(() => setAllUsers([]));
   }, [show, mode]);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     setSearch("");
   }, [show, mode]);
 
+  useEffect(() => {
+    if (show) {
+      searchRef.current?.focus();
+    }
+  }, [show, mode]);
 
   const source =
     mode === "follow"
@@ -57,7 +63,10 @@ export default function FollowModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username }),
       });
-      if (res.ok) onChanged(); 
+      if (res.ok) {
+        searchRef.current?.focus();
+        onChanged();
+      }
     } finally {
       setBusy(null);
     }
@@ -69,6 +78,7 @@ export default function FollowModal({
       onHide={onHide}
       centered
       scrollable
+      autoFocus={false}
       className="follow-modal"
     >
       <Modal.Header closeButton>
@@ -82,6 +92,7 @@ export default function FollowModal({
       </Modal.Header>
       <Modal.Body>
         <Form.Control
+          ref={searchRef}
           placeholder="Search accounts..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}

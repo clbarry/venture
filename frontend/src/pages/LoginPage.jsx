@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -15,11 +15,51 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // focus management
+  const usernameRef = useRef(null);
+  const errorRef = useRef(null);
+  const modeRef = useRef(mode); // for the Esc handler
+
+  const isLogin = mode === "login";
+
+  useEffect(() => {
+    modeRef.current = mode;
+  }, [mode]);
+
+  // Focus the first field on mount and whenever the mode changes
+  useEffect(() => {
+    usernameRef.current?.focus();
+  }, [mode]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        if (modeRef.current === "register") {
+          setMode("login");
+          setError("");
+        } else {
+          navigate(-1);
+        }
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    // prevent duplicate listeners
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [navigate]);
+
+  // When an error appears, move focus to it 
+  useEffect(() => {
+    if (error) {
+      errorRef.current?.focus();
+    }
+  }, [error]);
+
   const onSubmit = async (e) => {
+    // Enter inside any input triggers the form's submit button 
     e.preventDefault();
     setError("");
 
-    const isLogin = mode === "login";
     const url = isLogin ? "/api/auth/login" : "/api/auth/register";
     const body = isLogin
       ? { username, password }
@@ -43,8 +83,6 @@ export default function LoginPage() {
     setMode(mode === "login" ? "register" : "login");
     setError("");
   };
-
-  const isLogin = mode === "login";
 
   return (
     <Container fluid className="login-page g-0">
@@ -96,6 +134,8 @@ export default function LoginPage() {
               <Form.Group className="mb-3" controlId="login-username">
                 <Form.Label className="visually-hidden">Username</Form.Label>
                 <Form.Control
+                  ref={usernameRef}
+                  tabIndex={0}
                   className="login-input"
                   placeholder="Username"
                   value={username}
@@ -107,6 +147,7 @@ export default function LoginPage() {
                 <Form.Group className="mb-3" controlId="login-email">
                   <Form.Label className="visually-hidden">Email</Form.Label>
                   <Form.Control
+                    tabIndex={0}
                     className="login-input"
                     type="email"
                     placeholder="Email"
@@ -119,6 +160,7 @@ export default function LoginPage() {
               <Form.Group className="mb-3" controlId="login-password">
                 <Form.Label className="visually-hidden">Password</Form.Label>
                 <Form.Control
+                  tabIndex={0}
                   className="login-input"
                   type="password"
                   placeholder="Password"
@@ -127,17 +169,27 @@ export default function LoginPage() {
                 />
               </Form.Group>
 
-              <Button type="submit" className="login-submit w-100">
+              <Button type="submit" tabIndex={0} className="login-submit w-100">
                 {isLogin ? "Sign in" : "Sign up"}
               </Button>
 
-              {error && <div className="login-error">{error}</div>}
+              {error && (
+                <div
+                  ref={errorRef}
+                  tabIndex={-1}
+                  role="alert"
+                  className="login-error"
+                >
+                  {error}
+                </div>
+              )}
             </Form>
 
             <p className="login-toggle-row">
               {isLogin ? "New to Venture?" : "Already have an account?"}{" "}
               <Button
                 variant="link"
+                tabIndex={0}
                 className="login-toggle"
                 onClick={toggleMode}
               >
