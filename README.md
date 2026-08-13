@@ -101,7 +101,7 @@ Playfair and Open Sans were used in this application through Google Fonts. These
 
 # Demo Video
 
-[Demo video](https://youtu.be/Do49MqIdPk8?si=pGuCm_lnfOm2R5vO)
+https://youtu.be/Do49MqIdPk8?si=pGuCm_lnfOm2R5vO
 
 ---
 
