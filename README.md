@@ -263,22 +263,34 @@ db.createCollection("itineraries")
 
 ### 2. Generate a mock data set using mockaroo
 
-Each itineraries document should have the following fields:
+Each `itineraries` document currently uses the following shape:
 ```
-_id
+_id: ObjectId
+title: string
 caption: string
 theme: string
+fitness_level: string
 country: string
 city: string
-num_days: int
-num_people: int
-fitness_level: int
+collaborators: string[]
 family_friendly: boolean
-plan: Object
+day_count: number
+tips: string
+plan: {
+  day_1: string[]
+  day_2: string[]
+  ...
+}
 creator: string
-likes: int
-collaborators: Array
+likes: number
+liked_by: string[]
+created_at: Date
+updated_at: Date
 ```
+
+Note: the feed also returns a derived `liked: boolean` value for the current
+signed-in user, but that field is computed in the API and is not stored in the
+database.
 
 Each user_profiles document should have the following fields:
 ```
@@ -290,14 +302,14 @@ followers: Array
 following: Array
 ```
 
-### 3. Import the CSV into the `prompts` collection
+### 3. Import the CSV into the `itineraries` collection
 
 Use `mongoimport` to load the data:
 
 ```
 mongoimport \
   --uri <connection_uri> \
-  --collection prompts \
+  --collection itineraries \
   --type csv \
   --headerline \
   --file {filename}.csv
