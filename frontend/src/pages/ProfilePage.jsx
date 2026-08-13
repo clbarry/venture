@@ -21,7 +21,7 @@ export default function ProfilePage() {
 
   const onDeleteAccount = async () => {
     const confirmed = window.confirm(
-      "Delete your account? This removes all your itineraries and cannot be undone.",
+      "Delete your account? This removes all your itineraries and cannot be undone."
     );
     if (!confirmed) return;
 
@@ -94,7 +94,11 @@ export default function ProfilePage() {
             >
               <strong>{profile.following.length}</strong> following
             </button>
-            <Button size="sm" aria-haspopup="dialog" onClick={openModal("follow")}>
+            <Button
+              size="sm"
+              aria-haspopup="dialog"
+              onClick={openModal("follow")}
+            >
               <img
                 src="/follow-search.png"
                 alt="Search followers"

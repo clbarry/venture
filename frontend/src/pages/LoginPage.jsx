@@ -48,7 +48,7 @@ export default function LoginPage() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [navigate]);
 
-  // When an error appears, move focus to it 
+  // When an error appears, move focus to it
   useEffect(() => {
     if (error) {
       errorRef.current?.focus();
@@ -56,7 +56,7 @@ export default function LoginPage() {
   }, [error]);
 
   const onSubmit = async (e) => {
-    // Enter inside any input triggers the form's submit button 
+    // Enter inside any input triggers the form's submit button
     e.preventDefault();
     setError("");
 
