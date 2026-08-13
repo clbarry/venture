@@ -18,7 +18,6 @@ with a Node.js/Express backend, session-based authentication using Passport,
 and persistent storage in MongoDB — all served from a single Express server
 in production.
 
-
 ---
 
 ## Screenshots / Demo
@@ -215,6 +214,7 @@ Frontend (`frontend/package.json`):
 - [Docker](https://docs.docker.com/get-docker/) (for running MongoDB locally)
 
 ### 1. Install dependencies (backend and frontend)
+
 ```
 npm install
 cd frontend && npm install && cd ..
@@ -264,6 +264,7 @@ db.createCollection("itineraries")
 ### 2. Generate a mock data set using mockaroo
 
 Each `itineraries` document currently uses the following shape:
+
 ```
 _id: ObjectId
 title: string
@@ -284,8 +285,6 @@ plan: {
 creator: string
 likes: number
 liked_by: string[]
-created_at: Date
-updated_at: Date
 ```
 
 Note: the feed also returns a derived `liked: boolean` value for the current
@@ -293,6 +292,7 @@ signed-in user, but that field is computed in the API and is not stored in the
 database.
 
 Each user_profiles document should have the following fields:
+
 ```
 _id
 username: string
@@ -331,7 +331,6 @@ This project was developed in connection with the course:
 This project is deployed on Render.
 
 Link: (https://venture-1.onrender.com/)
-
 
 Deployment note:
 
