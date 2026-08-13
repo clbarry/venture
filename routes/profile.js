@@ -32,7 +32,7 @@ router.delete(
     try {
       const result = await ventureDB.deleteItineraryByCreator(
         req.params.itineraryId,
-        req.user.username,
+        req.user.username
       );
 
       if (result.reason === "not found") {
@@ -50,7 +50,7 @@ router.delete(
       console.error("Delete itinerary failed:", err);
       return res.status(500).json({ message: "Failed to delete itinerary" });
     }
-  },
+  }
 );
 
 router.delete("/", isAuthenticated, async (req, res) => {
