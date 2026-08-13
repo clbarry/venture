@@ -29,7 +29,6 @@ export default function NavigationBar() {
 
   return (
     <>
-
       <Navbar
         expand="lg"
         expanded={expanded}

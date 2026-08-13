@@ -75,7 +75,7 @@ function buildItineraryPayload(body) {
 router.get("/create/editable", isAuthenticated, async (req, res) => {
   try {
     const itineraries = await ventureDB.getEditableItinerariesForUser(
-      req.user.username,
+      req.user.username
     );
     return res.json({ itineraries });
   } catch (error) {
@@ -90,7 +90,7 @@ router.get("/create/:itineraryId", isAuthenticated, async (req, res) => {
   try {
     const itinerary = await ventureDB.getEditableItineraryById(
       req.params.itineraryId,
-      req.user.username,
+      req.user.username
     );
 
     if (!itinerary) {
@@ -143,7 +143,7 @@ router.put("/create/:itineraryId", isAuthenticated, async (req, res) => {
     const result = await ventureDB.updateEditableItineraryById(
       req.params.itineraryId,
       req.user.username,
-      built.payload,
+      built.payload
     );
 
     if (result.reason === "not found") {

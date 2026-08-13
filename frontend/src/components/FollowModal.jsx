@@ -46,7 +46,7 @@ export default function FollowModal({
         : followers;
 
   const visible = source.filter((u) =>
-    u.toLowerCase().includes(search.toLowerCase()),
+    u.toLowerCase().includes(search.toLowerCase())
   );
 
   const act = async (username) => {

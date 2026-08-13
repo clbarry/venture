@@ -21,7 +21,7 @@ export default function DayPlans({
 
   const handleRemoveActivity = (indexToRemove) => {
     onActivitiesChange?.(
-      activities.filter((_, index) => index !== indexToRemove),
+      activities.filter((_, index) => index !== indexToRemove)
     );
   };
 
