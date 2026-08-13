@@ -90,7 +90,7 @@ export default function CreatePage() {
     setDayActivities((prev) => {
       const next = Array.from(
         { length: nextCount },
-        (_, index) => prev[index] ?? [],
+        (_, index) => prev[index] ?? []
       );
       return next;
     });
@@ -106,7 +106,7 @@ export default function CreatePage() {
 
   const handleDayActivitiesChange = (dayIndex, nextActivities) => {
     setDayActivities((prev) =>
-      prev.map((day, index) => (index === dayIndex ? nextActivities : day)),
+      prev.map((day, index) => (index === dayIndex ? nextActivities : day))
     );
   };
 
@@ -131,7 +131,7 @@ export default function CreatePage() {
 
   const handleDelete = async () => {
     const confirmed = window.confirm(
-      "Delete this itinerary? This cannot be undone.",
+      "Delete this itinerary? This cannot be undone."
     );
     if (!confirmed) return;
 
@@ -143,7 +143,7 @@ export default function CreatePage() {
         `/api/profile/itineraries/${selectedItineraryId}`,
         {
           method: "DELETE",
-        },
+        }
       );
 
       if (!res.ok) {
@@ -209,12 +209,12 @@ export default function CreatePage() {
       setDayCount(count);
       setDayActivities(loadedDays);
       setCollaboratorList(
-        Array.isArray(itinerary.collaborators) ? itinerary.collaborators : [],
+        Array.isArray(itinerary.collaborators) ? itinerary.collaborators : []
       );
       window.history.replaceState(
         {},
         "",
-        `/create?edit=${encodeURIComponent(itineraryId)}`,
+        `/create?edit=${encodeURIComponent(itineraryId)}`
       );
     } catch {
       setPublishStatus({
@@ -259,7 +259,7 @@ export default function CreatePage() {
     }
     bodyParams.set(
       "collaborators",
-      collaboratorList.map((u) => `@${u}`).join(", "),
+      collaboratorList.map((u) => `@${u}`).join(", ")
     );
     bodyParams.set("caption", formValues.caption);
     bodyParams.set("tips", formValues.tips ?? "");
@@ -284,7 +284,7 @@ export default function CreatePage() {
             Accept: "application/json",
           },
           body: bodyParams.toString(),
-        },
+        }
       );
 
       const data = await res.json().catch(() => ({}));
@@ -340,7 +340,7 @@ export default function CreatePage() {
   const addCollaborator = (username) => {
     const clean = username.replace(/^@+/, "");
     const match = allUsernames.find(
-      (n) => n.toLowerCase() === clean.toLowerCase(),
+      (n) => n.toLowerCase() === clean.toLowerCase()
     );
     if (!match) return;
     if (collaboratorList.some((c) => c.toLowerCase() === match.toLowerCase()))
@@ -351,7 +351,7 @@ export default function CreatePage() {
 
   const removeCollaborator = (username) => {
     setCollaboratorList((prev) =>
-      prev.filter((c) => c.toLowerCase() !== username.toLowerCase()),
+      prev.filter((c) => c.toLowerCase() !== username.toLowerCase())
     );
   };
   return (
@@ -583,7 +583,7 @@ export default function CreatePage() {
                           collaboratorList.length > 0
                         ) {
                           removeCollaborator(
-                            collaboratorList[collaboratorList.length - 1],
+                            collaboratorList[collaboratorList.length - 1]
                           );
                         }
                       }}

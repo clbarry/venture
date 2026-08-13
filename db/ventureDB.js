@@ -69,7 +69,7 @@ function VentureDB() {
               updated_at: 1,
               created_at: 1,
             },
-          },
+          }
         )
         .sort({ _id: -1 })
         .toArray();
@@ -122,7 +122,7 @@ function VentureDB() {
             ...updates,
             updated_at: new Date(),
           },
-        },
+        }
       );
 
       return { updated: true };
@@ -168,7 +168,7 @@ function VentureDB() {
       const id = new ObjectId(itineraryId);
       const current = await itineraries.findOne(
         { _id: id },
-        { projection: { likes: 1, liked_by: 1 } },
+        { projection: { likes: 1, liked_by: 1 } }
       );
 
       if (!current) return null;
@@ -187,7 +187,7 @@ function VentureDB() {
           {
             returnDocument: "after",
             projection: { likes: 1 },
-          },
+          }
         );
 
         return {
@@ -206,7 +206,7 @@ function VentureDB() {
         {
           returnDocument: "after",
           projection: { likes: 1 },
-        },
+        }
       );
 
       return {
@@ -289,11 +289,11 @@ function VentureDB() {
     try {
       await profiles.updateOne(
         { username: followerUsername },
-        { $addToSet: { following: targetUsername } },
+        { $addToSet: { following: targetUsername } }
       );
       await profiles.updateOne(
         { username: targetUsername },
-        { $addToSet: { followers: followerUsername } },
+        { $addToSet: { followers: followerUsername } }
       );
     } finally {
       await client.close();
@@ -305,11 +305,11 @@ function VentureDB() {
     try {
       await profiles.updateOne(
         { username: followerUsername },
-        { $pull: { following: targetUsername } },
+        { $pull: { following: targetUsername } }
       );
       await profiles.updateOne(
         { username: targetUsername },
-        { $pull: { followers: followerUsername } },
+        { $pull: { followers: followerUsername } }
       );
     } finally {
       await client.close();
