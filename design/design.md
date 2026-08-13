@@ -1,4 +1,4 @@
-# Venture Design Plan # 
+# Venture Design Plan -- Iteration 2 (P4)# 
 
 # Description
 Venture is a full-stack application that leverages a social network approach to travel planning. Venture allows users to create, share, build, and rate travel itineraries, independently or in groups.Collections:Two MongoDB collections will be used: Itineraries and User Profiles.
@@ -55,7 +55,8 @@ Delete – Users can delete their profile.
 Page #1: Welcome/home page with login.
 Page #2: Feed page: Default to show all posts from friends/followers, with a search bar and filter bar to query through all itineraries (not just from friends).
 Page #3: Profile page: Tab to display all created itineraries. Will also show followers/following. Users can follow or unfollow someone from the user’s profile page. They can also delete their account.
-Page #4: Create page for itineraries.
+Page #4: Curate (create, read, update, delete) page for itineraries.
+Page #5: Help and FAQs.
 
 ---
 
