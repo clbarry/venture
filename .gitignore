@@ -56,3 +56,5 @@ venture/data/itineraries_1000.json
 data/generate_itineraries_1000.mjs
 data/itineraries_1000.json
 
+.npm-cache/
+
