@@ -98,7 +98,9 @@ export default function FeedCards({
                   : `${likeCount} like${likeCount === 1 ? "" : "s"}`}
             </button>
           </div>
+
           <Accordion.Body className="accordion-body">
+            <hr className="feed-cards-divider" />
             <div className="feed-cards-body">
               <div className="feed-cards-meta">
                 {creator && (
