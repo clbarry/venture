@@ -5,6 +5,7 @@
   --dark-font: #1b2432; /* Dark Font */
   --dark-color: #071425; /* Dark Blue */
   --coral-red: #fe5e41; /* Coral Red */
+  --dark-coral-red: #fe3714; /* Coral Red */
   --orange: #f3c178; /* Sandy Orange */
   --sky-blue: #92d5e6; /* Sky Blue */
   --background: #fdf7e7; /* Lighter Cream */
@@ -92,7 +93,7 @@
   --bs-btn-font-weight: 700;
   --bs-btn-font-family: "Open Sans", sans-serif;
   --bs-btn-color: var(--background);
-  --bs-btn-bg: var(--coral-red);
+  --bs-btn-bg: var(--dark-coral-red);
   --bs-btn-border-color: var(--coral-red);
   --bs-btn-hover-color: var(--coral-red);
   --bs-btn-hover-bg: var(--background);
