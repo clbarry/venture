@@ -4,12 +4,7 @@
 }
 
 .login-hero {
-  background: linear-gradient(
-    135deg,
-    #aecbc9 0%,
-    #e3c98b 45%,
-    #ec8a5c 100%
-  );
+  background: linear-gradient(135deg, #aecbc9 0%, #e3c98b 45%, #ec8a5c 100%);
   padding: 3rem 3.5rem;
 }
 
@@ -63,7 +58,7 @@
   background: #fdf6e3;
   border-radius: 50rem;
   padding: 0.6rem 1.25rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -74,7 +69,6 @@
   max-width: 30rem;
   margin-bottom: 0;
 }
-
 
 .login-form-panel {
   background: #fdf7e7;
@@ -98,7 +92,6 @@
   margin-bottom: 1.75rem;
 }
 
-
 .login-input {
   border-radius: 50rem;
   padding: 0.85rem 1.5rem;
@@ -112,7 +105,7 @@
 }
 
 .login-submit {
-  background: #ec7a52;
+  background: #ec8a5c;
   border: none;
   border-radius: 50rem;
   padding: 0.85rem 1.5rem;
@@ -125,7 +118,6 @@
   border: none;
   box-shadow: 0 0 0 0.2rem rgba(236, 122, 82, 0.25);
 }
-
 
 .login-error {
   color: #b3402a;
