@@ -185,6 +185,7 @@
 .help-disclaimer-link {
   text-decoration: underline;
   font-style: italic;
+  color: black;
 }
  
 .help-disclaimer-link:hover {

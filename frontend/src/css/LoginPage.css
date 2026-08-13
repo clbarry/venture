@@ -105,7 +105,7 @@
 }
 
 .login-submit {
-  background: #d46b3b;
+  background-color: #bd5a2d;
   border: none;
   border-radius: 50rem;
   padding: 0.85rem 1.5rem;
@@ -134,7 +134,7 @@
 }
 
 .login-toggle {
-  color: #d9481c;
+  color: #ec5a2e;
   font-weight: 700;
   text-decoration: none;
   padding: 0;
