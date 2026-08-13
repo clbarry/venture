@@ -145,16 +145,22 @@ venture/
         ├── main.jsx
         ├── components/
         │   ├── FollowModal.jsx
+        │   ├── DayPlans.jsx
+        │   ├── FeedCards.jsx
         │   └── NavigationBar.jsx
         ├── css/
         │   ├── CreatePage.css
         │   ├── FollowModal.css
+        │   ├── DayPlans.css
+        │   ├── FeedPage.css
+        │   ├── HelpPage.css
         │   ├── LoginPage.css
         │   ├── Navbar.css
         │   └── ProfilePage.css
         └── pages/
             ├── CreatePage.jsx
             ├── FeedPage.jsx
+            ├── HelpPage.jsx
             ├── LoginPage.jsx
             └── ProfilePage.jsx
 ```
