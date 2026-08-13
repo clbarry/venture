@@ -31,11 +31,11 @@ Below are screenshots of each page of the website.
 
 ### Profile Page
 
-![Profile Page Screenshot](./design/venture_p4_profile.png)
+![Profile Page Screenshot](./design/venture_profile.png)
 
 ### Home Feed Page
 
-![Home Feed Page Screenshot](./design/venture_p4_feed.png)
+![Home Feed Page Screenshot](./design/venture_feed.png)
 
 ### Create & Edit (Curate) Page
 
