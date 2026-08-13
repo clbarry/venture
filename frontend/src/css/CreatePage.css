@@ -90,7 +90,7 @@
 
 /* Create Page Buttons */
 #publishButton {
-  --bs-btn-font-weight: 700;
+  --bs-btn-font-weight: 800;
   --bs-btn-font-family: "Open Sans", sans-serif;
   --bs-btn-color: var(--background);
   --bs-btn-bg: var(--dark-coral-red);
@@ -103,7 +103,7 @@
   --bs-btn-active-border-color: var(--dark-color);
   width: fit-content;
   border-radius: 50rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   padding: 0.5rem 1.25rem;
 }
 
