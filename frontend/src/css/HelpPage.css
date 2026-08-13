@@ -165,7 +165,6 @@
 .help-contact-link {
   font-family: "Open Sans", sans-serif;
   font-size: 0.9rem;
-  color: var(--coral-red);
   text-decoration: none;
 }
 
@@ -184,7 +183,6 @@
 }
  
 .help-disclaimer-link {
-  color: var(--coral-red);
   text-decoration: underline;
   font-style: italic;
 }
