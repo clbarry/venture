@@ -102,6 +102,14 @@
   padding: 1rem;
 }
 
+.feed-cards-actions {
+  padding: 0 1rem 0.75rem;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  margin-left: auto;
+}
+
 .feed-cards-meta {
   display: flex;
   flex-wrap: wrap;
@@ -138,7 +146,7 @@
 .feed-cards-like-btn {
   --bs-btn-color: var(--dark-color);
   --bs-btn-bg: var(--background);
-  --bs-btn-border-color: var(--background-alt);
+  --bs-btn-border-color: var(--coral-red);
   --bs-btn-hover-color: var(--dark-color);
   --bs-btn-hover-bg: var(--sky-blue);
   --bs-btn-hover-border-color: var(--dark-color);

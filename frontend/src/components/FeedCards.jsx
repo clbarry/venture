@@ -73,34 +73,31 @@ export default function FeedCards({
                   <h3 className="feed-cards-caption">
                     {caption || "No caption provided."}
                   </h3>
-
-                  <div className="feed-cards-meta">
-                    <div className="feed-cards-meta">
-                      <button
-                        type="button"
-                        className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
-                        onClick={() => onLike?.(itinerary._id)}
-                        disabled={isLiking}
-                      >
-                        <img
-                          src="/likes.png"
-                          alt="thumbs up like emoji"
-                          width="16"
-                          height="16"
-                          className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
-                        />
-                        {isLiking
-                          ? "Updating..."
-                          : hasLiked
-                            ? `${likeCount - 1 === 1 ? "liked by you" : `you and ${likeCount - 1} others`}`
-                            : `${likeCount} like${likeCount === 1 ? "" : "s"}`}
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </Accordion.Header>
+          <div className="feed-cards-actions">
+            <button
+              type="button"
+              className={`btn btn-sm feed-cards-like-btn${hasLiked ? " is-liked" : ""}`}
+              onClick={() => onLike?.(itinerary._id)}
+              disabled={isLiking}
+            >
+              <img
+                src="/likes.png"
+                alt="thumbs up like emoji"
+                width="16"
+                height="16"
+                className={`feed-cards-like-icon${hasLiked ? " is-liked" : ""}`}
+              />
+              {isLiking
+                ? "Updating..."
+                : hasLiked
+                  ? `${likeCount - 1 === 1 ? "liked by you" : `you and ${likeCount - 1} others`}`
+                  : `${likeCount} like${likeCount === 1 ? "" : "s"}`}
+            </button>
+          </div>
           <Accordion.Body className="accordion-body">
             <div className="feed-cards-body">
               <div className="feed-cards-meta">
