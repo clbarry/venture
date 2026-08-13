@@ -101,13 +101,13 @@ Playfair and Open Sans were used in this application through Google Fonts. These
 
 # Demo Video
 
-youtube.com/watch?si=7bC4RHDU1Ob_j8P_&v=Do49MqIdPk8&feature=youtu.be
+[Demo video](youtube.com/watch?si=7bC4RHDU1Ob_j8P_&v=Do49MqIdPk8&feature=youtu.be)
 
 ---
 
 ### Presentation Slides
 
-https://docs.google.com/presentation/d/1plv3NFVBxk6XM4kuj8bBjOcRRqjMb4mRNnGVsGOyzBw/edit?usp=sharing
+[Slide deck](https://docs.google.com/presentation/d/1plv3NFVBxk6XM4kuj8bBjOcRRqjMb4mRNnGVsGOyzBw/edit?usp=sharing)
 ---
 
 ## Project Structure Graphic
