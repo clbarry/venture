@@ -97,6 +97,7 @@ Help Page
 **Text & Font**
 
 Playfair and Open Sans were used in this application through Google Fonts. These fonts were chosen based on their aesthetic appeal to the designers and their pairing in https://fontpair.co/fonts/google/playfair-display.
+The combination offers an element of sophistcation paired with a more fun and casual font to fit the vibe of our site.
 
 # Demo Video
 
