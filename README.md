@@ -25,41 +25,89 @@ in production.
 
 Below are screenshots of each page of the website.
 
-### [Login Page](https://venture-3ojg.onrender.com)
+### [Login Page](https://venture-1.onrender.com/)
 
 ![Login Page Screenshot](./frontend/public/screenshot-login.png)
 
 ### Profile Page
 
-![Profile Page Screenshot](./frontend/public/screenshot-profile.png)
+![Profile Page Screenshot](./design/venture_p4_profile.png)
 
 ### Home Feed Page
 
-![Home Feed Page Screenshot](./frontend/public/feed-page.png)
+![Home Feed Page Screenshot](./design/venture_p4_feed.png)
 
-### Create & Edit Page
+### Create & Edit (Curate) Page
 
-![Edite and Create Page Screenshot](./frontend/public/create-page.png)
+![Edit and Create Page Screenshot](./design/venture_p4_curate.png)
+
+### Help Page
+
+![Edite and Create Page Screenshot](./design/venture_p4_help.png)
 
 # Demo Video
 
-[Demo of Venture site](https://youtu.be/RGJaSWaeLGg)
+[Demo of Venture site](youtube.com/watch?si=7bC4RHDU1Ob_j8P_&v=Do49MqIdPk8&feature=youtu.be)
 
 ---
 
-## Design
+## Design and Accessability
 
 The visual design of this site was planned prior to development, covering layout, color palette, and typography decisions. The design document also includes user personas, division of work, and CRUD explination.
 
 [View Design Plan Narrative Discussion](./design/design.md)
 
-[View Design Graphis](./design/P3_VentureDesign.jpg)
+[View Original Design Graphis](./design/P3_VentureDesign.jpg)
+
+On our second iteration, we made some slight redesigns based off of user study evaluations and accessibility considerations. See screenshots and demo above for the visuals of the newest iteration of Venture.
+
+#### Accessibility
+
+**Colorblindness**
+
+Login Page
+
+![Login Page Screenshot in Black and White](./design/login-bw.png)
+![Login Page Screenshot For Red Color Blindness](./design/login-redblind.png)
+![Login Page Screenshot For Green Color Blindness](./design/login-greenblind.png)
+
+Profile Page
+
+![Profile Page Screenshot in Black and White](./design/profile-bw.png)
+![Profile Page Screenshot For Red Color Blindness](./design/profile-redblind.png)
+![Profile Page Screenshot For Green Color Blindness](./design/profile-greenblind.png)
+
+Home Feed Page
+
+![Home Page Screenshot in Black and White](./design/feed-bw.png)
+![Home Page Screenshot For Red Color Blindness](./design/feed-redblind.png)
+![Home Page Screenshot For Green Color Blindness](./design/feed-greenblind.png)
+
+Create & Edit (Curate) Page
+
+![Curate Page Screenshot in Black and White](./design/curate-bw.png)
+![Curate Page Screenshot For Red Color Blindness](./design/curate-redblind.png)
+![Curate Page Screenshot For Green Color Blindness](./design/curate-greenblind.png)
+
+Help Page
+
+![Help Page Screenshot in Black and White](./design/help-bw.png)
+![Help Page Screenshot For Red Color Blindness](./design/help-redblind.png)
+![Help Page Screenshot For Green Color Blindness](./design/help-greenblind.png)
+
+**Text & Font**
+
+Playfair and Open Sans were used in this application through Google Fonts. These fonts were chosen based on their aesthetic appeal to the designers and their pairing in https://fontpair.co/fonts/google/playfair-display.
+
+# Demo Video
+
+[Demo of Venture site](youtube.com/watch?si=7bC4RHDU1Ob_j8P_&v=Do49MqIdPk8&feature=youtu.be)
 
 ---
 
 ### Presentation Slides
 
-[Presentation slides](https://docs.google.com/presentation/d/1TbRHpUG1_WB00ah-TqqzbsnyzBx7bL5xdHrZbtjx1Y4/edit?usp=sharing)
+[Presentation slides](https://docs.google.com/presentation/d/1plv3NFVBxk6XM4kuj8bBjOcRRqjMb4mRNnGVsGOyzBw/edit?usp=sharing)
 <!-- This is my slide deck, we will need to replace with our's -->
 ---
 
@@ -265,7 +313,7 @@ This project was developed in connection with the course:
 
 This project is deployed on Render.
 
-Link: (https://venture-p3.onrender.com)
+Link: (https://venture-1.onrender.com/)
 
 
 Deployment note:
@@ -281,7 +329,7 @@ This project may include AI-assisted development.
 - All final code decisions, testing, and integration were reviewed by the project authors.
 - Any AI-generated content was validated and adapted to project requirements.
 
-[See AI Discolosure log for details](./AI_Disclosure.md).
+[See AI Discolosure log for details](./AI_Disclosure_p4.md).
 
 ## License
 
