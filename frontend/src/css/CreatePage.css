@@ -6,7 +6,7 @@
   --dark-color: #071425; /* Dark Blue */
   --coral-red: #fe5e41; /* Coral Red */
   --dark-coral-red: #fe3714; /* Coral Red */
-  --orange: #f3c178; /* Sandy Orange */
+  --orange: #ec8a5c; /* Sandy Orange */
   --sky-blue: #92d5e6; /* Sky Blue */
   --background: #fdf7e7; /* Lighter Cream */
   --background-alt: #ead9b8; /* Light Cream */
@@ -90,7 +90,7 @@
 
 /* Create Page Buttons */
 #publishButton {
-  --bs-btn-font-weight: 800;
+  --bs-btn-font-weight: 700;
   --bs-btn-font-family: "Open Sans", sans-serif;
   --bs-btn-color: var(--dark-color);
   --bs-btn-bg: var(--orange);
@@ -118,7 +118,7 @@
   color: var(--delete-btn-color);
   border: 1px solid var(--delete-btn-border-color);
   border-radius: 50rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   padding: 0.5rem 1.25rem;
 }
@@ -135,7 +135,7 @@
   color: var(--cancel-btn-color);
   border: 1px solid var(--cancel-btn-border-color);
   border-radius: 50rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   padding: 0.5rem 1.25rem;
 }
@@ -149,12 +149,12 @@
 
 .create-publish-status-success {
   color: #1a7f37;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .create-publish-status-error {
   color: #b42318;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .collab-field {
