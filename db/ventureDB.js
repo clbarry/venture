@@ -45,7 +45,7 @@ function VentureDB() {
     const { client, itineraries } = connect();
     try {
       const data = await itineraries.find(query).toArray();
-      console.log("Fetched data from Mongo:", data);
+      /*console.log("Fetched data from Mongo:", data);*/
       return data;
     } finally {
       await client.close();
