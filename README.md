@@ -66,33 +66,43 @@ On our second iteration, we made some slight redesigns based off of user study e
 
 Login Page
 
-![Login Page Screenshot in Black and White](./design/login-bw.png)
-![Login Page Screenshot For Red Color Blindness](./design/login-redblind.png)
-![Login Page Screenshot For Green Color Blindness](./design/login-greenblind.png)
+<p align="center">
+  <img src="./design/login-bw.png" alt="Login Page Screenshot in Black and White" width="32%" />
+  <img src="./design/login-redblind.png" alt="Login Page Screenshot For Red Color Blindness" width="32%" />
+  <img src="./design/login-greenblind.png" alt="Login Page Screenshot For Green Color Blindness" width="32%" />
+</p>
 
 Profile Page
 
-![Profile Page Screenshot in Black and White](./design/profile-bw.png)
-![Profile Page Screenshot For Red Color Blindness](./design/profile-redblind.png)
-![Profile Page Screenshot For Green Color Blindness](./design/profile-greenblind.png)
+<p align="center">
+  <img src="./design/profile-bw.png" alt="Profile Page Screenshot in Black and White" width="32%" />
+  <img src="./design/profile-redblind.png" alt="Profile Page Screenshot For Red Color Blindness" width="32%" />
+  <img src="./design/profile-greenblind.png" alt="Profile Page Screenshot For Green Color Blindness" width="32%" />
+</p>
 
 Home Feed Page
 
-![Home Page Screenshot in Black and White](./design/feed-bw.png)
-![Home Page Screenshot For Red Color Blindness](./design/feed-redblind.png)
-![Home Page Screenshot For Green Color Blindness](./design/feed-greenblind.png)
+<p align="center">
+  <img src="./design/feed-bw.png" alt="Home Page Screenshot in Black and White" width="32%" />
+  <img src="./design/feed-redblind.png" alt="Home Page Screenshot For Red Color Blindness" width="32%" />
+  <img src="./design/feed-greenblind.png" alt="Home Page Screenshot For Green Color Blindness" width="32%" />
+</p>
 
 Create & Edit (Curate) Page
 
-![Curate Page Screenshot in Black and White](./design/curate-bw.png)
-![Curate Page Screenshot For Red Color Blindness](./design/curate-redblind.png)
-![Curate Page Screenshot For Green Color Blindness](./design/curate-greenblind.png)
+<p align="center">
+  <img src="./design/curate-bw.png" alt="Curate Page Screenshot in Black and White" width="32%" />
+  <img src="./design/curate-redblind.png" alt="Curate Page Screenshot For Red Color Blindness" width="32%" />
+  <img src="./design/curate-greenblind.png" alt="Curate Page Screenshot For Green Color Blindness" width="32%" />
+</p>
 
 Help Page
 
-![Help Page Screenshot in Black and White](./design/help-bw.png)
-![Help Page Screenshot For Red Color Blindness](./design/help-redblind.png)
-![Help Page Screenshot For Green Color Blindness](./design/help-greenblind.png)
+<p align="center">
+  <img src="./design/help-bw.png" alt="Help Page Screenshot in Black and White" width="32%" />
+  <img src="./design/help-redblind.png" alt="Help Page Screenshot For Red Color Blindness" width="32%" />
+  <img src="./design/help-greenblind.png" alt="Help Page Screenshot For Green Color Blindness" width="32%" />
+</p>
 
 **Text & Font**
 
