@@ -51,7 +51,7 @@ export default function FeedPage() {
           setCurrentFollowing(
             Array.isArray(userData?.user?.following)
               ? userData.user.following
-              : [],
+              : []
           );
         }
       } catch {
@@ -85,8 +85,8 @@ export default function FeedPage() {
         prev.map((itinerary) =>
           itinerary._id === itineraryId
             ? { ...itinerary, likes: data.likes, liked: data.liked }
-            : itinerary,
-        ),
+            : itinerary
+        )
       );
     } catch {
       // Keep current UI state if request fails.
@@ -108,7 +108,7 @@ export default function FeedPage() {
   });
 
   const likedItineraries = itineraries.filter((itinerary) =>
-    Boolean(itinerary.liked),
+    Boolean(itinerary.liked)
   );
   const baseItineraries =
     feedView === "all"
@@ -180,24 +180,24 @@ export default function FeedPage() {
 
   const totalPages = Math.max(
     1,
-    Math.ceil(sourceItineraries.length / ITEMS_PER_PAGE),
+    Math.ceil(sourceItineraries.length / ITEMS_PER_PAGE)
   );
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const displayedItineraries = sourceItineraries.slice(
     startIndex,
-    startIndex + ITEMS_PER_PAGE,
+    startIndex + ITEMS_PER_PAGE
   );
   const isAllExpanded =
     displayedItineraries.length > 0 &&
     displayedItineraries.every((itinerary) =>
-      expandedCardIds.includes(itinerary._id),
+      expandedCardIds.includes(itinerary._id)
     );
 
   const handleToggleCard = (itineraryId) => {
     setExpandedCardIds((prev) =>
       prev.includes(itineraryId)
         ? prev.filter((id) => id !== itineraryId)
-        : [...prev, itineraryId],
+        : [...prev, itineraryId]
     );
   };
 
@@ -208,8 +208,6 @@ export default function FeedPage() {
   const handleCollapseAll = () => {
     setExpandedCardIds([]);
   };
-
-  const canLoadMore = currentPage < totalPages;
 
   const paginationItems = (() => {
     if (totalPages <= 7) {
@@ -407,7 +405,7 @@ export default function FeedPage() {
                       >
                         {page}
                       </Pagination.Item>
-                    ),
+                    )
                   )}
                   <Pagination.Next
                     onClick={() =>
