@@ -54,7 +54,8 @@ export default function DayPlans({
 
         <div className="form-entry">
           <label htmlFor={`day-${dayNumber}-activity-input`}>
-            day activities
+            day activities - enter each activity below and press "Add Activity"
+            or enter to add it to the list
           </label>
           <input
             type="text"
