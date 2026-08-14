@@ -150,7 +150,7 @@ Venture now raises 0 issues with the Axe Devtools scan across each of its pages 
 
 # Demo Video
 
-https://youtu.be/V0lADEM26cU?si=qemZ0uPW4wQ0ZLoT
+https://www.youtube.com/watch?v=V0lADEM26cU
 
 ---
 
