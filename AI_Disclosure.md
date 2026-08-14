@@ -14,11 +14,7 @@ This project used AI assistance through Claude Fable 5.0 for planning, debugging
 
 ## AI Disclosure Log (Carey)
 
-## AI Disclosure Log
-
 This project used AI assistance (Claude, Anthropic and CoPilot) during development. The prompts used and how each output was applied are logged below for transparency.
-
-# AI Disclosure
 
 | #   | Purpose                               | Prompt                                                                                                                                                                 | How Output Was Used                                                                                                                           |
 | --- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
