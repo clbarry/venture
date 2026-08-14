@@ -46,7 +46,7 @@ Below are screenshots of each page of the website.
 
 # Demo Video
 
-[Demo of Venture site](youtube.com/watch?si=7bC4RHDU1Ob_j8P_&v=Do49MqIdPk8&feature=youtu.be)
+[Demo of Venture site](https://www.youtube.com/watch?v=V0lADEM26cU)
 
 ---
 
