@@ -51,19 +51,21 @@ Below are screenshots of each page of the website.
 ---
 
 ## Division of Work
+
 Each project member conducted 3 user interviews and contributed to the development of the interview script and exit survey. After compiling notes, the project members divided the identified tasks accordingly:
+
 - Carey:
   - Navbar language updated to say Curate and pencil icon added.
   - Language on the create page was updated to make it more prominent that users can create, edit, and delete. Brief instructions were added to the form selection.
-  - Added liked itineraries option on the feed page for user to view.
+  - Added filter for liked itineraries option on the feed page for user to view.
   - Debug following feature: following filter tested, accurately showing itineraries from followed users and if they are listed as a collaborator on an itinerary.
   - Users frustrated that you could not order the activities in a day. Added move up and down options for each activity in the array using indexing. Up decreases the index and down increases the index.
-  - Itinerary activities details: users wanted more details about the itinerary activities. Added a travel tips text entry option at the itinerary level to allow for more details in the create form.
+  - Itinerary activities details: users wanted more details about the itinerary activities. Added a travel tips text entry option at the itinerary level to allow for more details in the create form. Travel tips added to the itinerary cards for users to view.
   - Add activities to the categories searched in the search bar.
   - Added an * to all required fields with a message indicating all fields with a * are required.
   - It was not clear to users if they needed to select Add Activities to start adding or to save them. Updated language on the create page to make it clearer how to begin each action.
   - Feed page scrolling: The feed page was reorganized using Bootstrap grid to show 3 itinerary cards per row. React Bootstrap accordion feature was added to minimize the card body for easier viewing. An expand all and collapse all button was added. React Bootstrap Pagination component was added for better page navigation; the random loading was removed for consistency.
-  - Collaboration feature not clear: Added verbiage indicating collaborators can edit, but not delete itineraries in the create page form. Tested access to collaborate feature; successfully able to collaborate.  
+  - Collaboration feature not clear: Added verbiage indicating collaborators can edit, but not delete itineraries in the create page form. Tested access to collaborate feature; successfully able to collaborate.
 
 - Julia:
   - Add a pencil icon to the itinerary on the profile page that redirects to the edit page.
@@ -78,7 +80,7 @@ Each project member conducted 3 user interviews and contributed to the developme
   - Users wanted suggestions/autocompletion for adding collaborators to their itineraries. Added clickable auto-complete suggestions to user searches. Add valid usernames to input bar as a pill, where ‘x’ can be used to remove. System does not add non-existing usernames to ‘collaborators’. Does not matter if user types with ‘@’ before username.
   - Collaboration feature not clear: Add collaborated itineraries to the user profile view.
   - Delete itinerary confirmation: there was no confirmation shown after deleting an itinerary, causing user confusion. Message was not clear to users, so a modal was added. Redirected to profile upon closing modal.
- 
+
 After incorporating user feedback, both members assessed their work with Axe Devtools Chrome extension and implemented keyboard navigation to their respective pages.
 
 ## Design and Accessability
@@ -148,7 +150,7 @@ Venture now raises 0 issues with the Axe Devtools scan across each of its pages 
 
 # Demo Video
 
-https://youtu.be/Do49MqIdPk8?si=pGuCm_lnfOm2R5vO
+https://youtu.be/V0lADEM26cU?si=qemZ0uPW4wQ0ZLoT
 
 ---
 
