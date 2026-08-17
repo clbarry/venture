@@ -1,3 +1,4 @@
+// I really love the design of this page, it gave me a lot ideas for our project! Too bad its too late well done!
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 import Form from "react-bootstrap/Form";
