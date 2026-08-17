@@ -1,3 +1,5 @@
+// It would have been great to have picture of the placed on the cards of the places but I understand how challanging this would have been
+
 import Container from "react-bootstrap/Container";
 import Pagination from "react-bootstrap/Pagination";
 import NavigationBar from "../components/NavigationBar.jsx";
