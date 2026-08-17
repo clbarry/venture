@@ -1,5 +1,7 @@
 # Venture
 
+Peer Review Comment: Hello! Amazing job on your project. A trip planning collaboration app is a creative idea. I liked how when I first opened the sign-up page, your app's description is clearly stated from the start, also in a very visually appealing way. I also enjoyed how you can like an itinerary. If you decide to continue on this project in the future, it would be cool if there was a filter to view projects that are above/below a certain amount of likes. It would also be nice if it was possible to follow users directly from the itinerary card rather than going to the profile page. I loved that you had a Help & FAQs page. Overall, your website is clean, functional, and visually appealing. Great job! 
+
 A social media application for sharing vacation plans and ideas.
 
 ---
